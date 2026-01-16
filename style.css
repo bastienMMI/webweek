@@ -1075,3 +1075,34 @@ footer {
   .facebook-link { font-size: 1.3rem; }
   .legal-link { font-size: 0.75rem; }
 }
+
+/* Stylisation du bouton Remonter */
+
+.scroll-to-top {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 50px;
+  height: 50px;
+  background-color: var(--green-dark);
+  color: var(--white);
+  border: none;
+  border-radius: 50%;
+  font-size: 24px;
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+  z-index: 99;
+}
+
+.scroll-to-top.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+.scroll-to-top:hover {
+  background-color: var(--brown-text);
+  transform: translateY(-3px);
+  transition: all 0.3s ease-in-out;
+}
