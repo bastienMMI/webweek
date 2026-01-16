@@ -1,17 +1,20 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SPA Haute-Loire</title>
     <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <script src="js/script.js"></script>
+
 </head>
+
 <body>
-    <!-- commentaire test to delete-->
     <header>
         <input type="checkbox" id="menu-toggle" class="menu-checkbox">
-        
+
         <label for="menu-toggle" class="burger-menu">
             <span></span><span></span><span></span>
         </label>
@@ -36,7 +39,7 @@
         </div>
     </header>
 
-   <main>
+    <main>
         <section class="hero">
             <video autoplay muted loop playsinline id="hero-video" poster="fallback-image.jpg">
                 <source src="vidéo/videobanieres.mp4" type="video/mp4">
@@ -49,91 +52,100 @@
         </section>
 
         <section class="section-carousel">
-    <div class="container carousel-layout">
-        
-        <div id="main-carousel" class="carousel-container">
-            <div class="carousel-track">
-                <div class="carousel-item"><img src="animal1.jpg" alt=""></div>
-                <div class="carousel-item"><img src="animal2.jpg" alt=""></div>
-                <div class="carousel-item"><img src="animal3.jpg" alt=""></div>
-            </div>
-            
-            <div class="carousel-nav"></div>
-        </div>
+            <div class="container carousel-layout">
 
-        <div class="carousel-text">
-            <h2>Leur futur commence par votre visite : découvrez-les tous.</h2>
-        </div>
-        
-    </div>
-</section>
-<section class="section-about">
-    <div class="container">
-        <h3>A Propos de nous</h3>
-        <p>La SPA a vu le jour en 1983 grâce à une poignée d'amoureux des animaux. Pendant près de 10 ans, ses locaux se situèrent au rez-de-chaussée d'une maison vétuste Rue des Farges au Puy en Velay. Lieu peu approprié pour recevoir les chiens ou chats en errance. Le travail des bénévoles y était difficile et il n'y avait alors que très peu d'organisation. Enfin en 1994, le refuge actuel est "sorti" de terre grâce à l'acharnement de ces mêmes bénévoles et de quelques élus convaincus de la nécessité de ce site. Aujourd'hui, la SPA de la Haute-Loire est affiliée à la Confédération Nationale Défense de l'Animal. Elle accueille toute l'année une soixantaine de chiens et une trentaine de chats et chatons venant des communes conventionnées.</p>
-    </div>
-</section>
+                <div id="main-carousel" class="carousel-container">
+                    <div class="carousel-track">
+                        <div class="carousel-item"><img src="animal1.jpg" alt=""></div>
+                        <div class="carousel-item"><img src="animal2.jpg" alt=""></div>
+                        <div class="carousel-item"><img src="animal3.jpg" alt=""></div>
+                    </div>
 
+                    <div class="carousel-nav"></div>
+                </div>
 
-<section id="contact" class="section-contact">
-    <div class="container contact-grid">
-        
-        <div class="contact-info">
-            <h3>Contact</h3>
-            <p>7 Impasse du Refuge ZA Plaine de Bleu<br>43000 Polignac</p>
-            <p>spa-haute-loire@yahoo.fr</p>
-            <p>04 71 02 65 50</p>
-            
-            
-        </div>
-            <div id="map-container" class="map-box"></div>
-        </div>
-
-<div class="contact-form">
-                    <h3>Formulaire</h3>
-                    <form>
-                        <div class="form-row">
-                            <div class="input-group">
-                                <label>Nom</label>
-                                <input type="text">
-                            </div>
-                            <div class="input-group">
-                                <label>E-mail</label>
-                                <input type="email">
-                            </div>
-                        </div>
-                        <div class="input-group">
-                            <label>Téléphone</label>
-                            <input type="tel">
-                        </div>
-                        <div class="input-group">
-                            <label>Objet</label>
-                            <input type="text">
-                        </div>
-                        <div class="input-group">
-                            <label>Message</label>
-                            <textarea rows="4"></textarea>
-                        </div>
-                        <button type="submit" class="btn-submit">Envoyer</button>
-                    </form>
+                <div class="carousel-text">
+                    <h2>Leur futur commence par votre visite : découvrez-les tous.</h2>
                 </div>
 
             </div>
         </section>
-        </main>
+        <section class="section-about">
+            <div class="container">
+                <h3>A Propos de nous</h3>
+                <p>La SPA a vu le jour en 1983 grâce à une poignée d'amoureux des animaux. Pendant près de 10 ans, ses
+                    locaux se situèrent au rez-de-chaussée d'une maison vétuste Rue des Farges au Puy en Velay. Lieu peu
+                    approprié pour recevoir les chiens ou chats en errance. Le travail des bénévoles y était difficile
+                    et il n'y avait alors que très peu d'organisation. Enfin en 1994, le refuge actuel est "sorti" de
+                    terre grâce à l'acharnement de ces mêmes bénévoles et de quelques élus convaincus de la nécessité de
+                    ce site. Aujourd'hui, la SPA de la Haute-Loire est affiliée à la Confédération Nationale Défense de
+                    l'Animal. Elle accueille toute l'année une soixantaine de chiens et une trentaine de chats et
+                    chatons venant des communes conventionnées.</p>
+            </div>
+        </section>
 
-<footer>
-    <div class="footer-container">
-        <div class="footer-left">
-            <a href="https://www.facebook.com/people/SPA-de-la-Haute-Loire/100064272296018/" 
-               target="_blank" 
-               class="facebook-link">Facebook</a>
-        </div>
 
-        <div class="footer-right">
-            <a href="mentions-legales.html" class="legal-link">Mentions Légales</a>
+        <section id="contact" class="section-contact">
+            <div class="container contact-grid">
+
+                <div class="contact-info">
+                    <h3>Contact</h3>
+                    <p>7 Impasse du Refuge ZA Plaine de Bleu<br>43000 Polignac</p>
+                    <p>spa-haute-loire@yahoo.fr</p>
+                    <p>04 71 02 65 50</p>
+
+
+                </div>
+                <div id="map-container" class="map-box"></div>
+            </div>
+
+            <div class="contact-form">
+                <h3>Formulaire</h3>
+                <form>
+                    <div class="form-row">
+                        <div class="input-group">
+                            <label>Nom</label>
+                            <input type="text">
+                        </div>
+                        <div class="input-group">
+                            <label>E-mail</label>
+                            <input type="email">
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <label>Téléphone</label>
+                        <input type="tel">
+                    </div>
+                    <div class="input-group">
+                        <label>Objet</label>
+                        <input type="text">
+                    </div>
+                    <div class="input-group">
+                        <label>Message</label>
+                        <textarea rows="4"></textarea>
+                    </div>
+                    <button type="submit" class="btn-submit">Envoyer</button>
+                </form>
+            </div>
+
+            </div>
+        </section>
+        <button id="scrollToTop" class="scroll-to-top">↑</button>
+    </main>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-left">
+                <a href="https://www.facebook.com/people/SPA-de-la-Haute-Loire/100064272296018/" target="_blank"
+                    class="facebook-link">Facebook</a>
+            </div>
+
+            <div class="footer-right">
+                <a href="mentions-legales.html" class="legal-link">Mentions Légales</a>
+            </div>
         </div>
-    </div>
-</footer>
+    </footer>
+
 </body>
+
 </html>
