@@ -340,10 +340,10 @@ nav a {
 .carousel-container {
     position: relative;
     width: 100%;
-    max-width: 800px; /* Tu peux ajuster la taille */
+    max-width: 800px; 
     margin: 0 auto;
     overflow: hidden;
-    border-radius: 15px; /* Optionnel : arrondit les coins des images */
+    border-radius: 15px; 
 }
 
 .carousel-track {
@@ -356,10 +356,9 @@ nav a {
 }
 
 .carousel-item img {
-    width: 100%;
-    height: 400px; /* Ajuste la hauteur souhaitée */
-    object-fit: cover; /* Évite de déformer les images */
-    display: block;
+  width: 100%;
+  height: auto;
+  object-position: center; 
 }
 
 /* Boutons Précédent / Suivant */
@@ -404,7 +403,7 @@ nav a {
 }
 
 .nav-dot.active {
-    background: #333; /* Couleur du point actif */
+    background: #333; 
 }
 
 @media (min-width: 992px) {

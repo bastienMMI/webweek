@@ -27,10 +27,10 @@
             <button class="carousel-btn next" aria-label="Suivant">❯</button>
 
             <div class="carousel-track">
-                <!-- Mettre les bonnes images-->
-                <div class="carousel-item"><img src="images/attrape poil.webp" alt=""></div>
-                <div class="carousel-item"><img src="images/decapsuleur.webp" alt=""></div>
-                <div class="carousel-item"><img src="images/banniere.webp" alt=""></div>
+               
+                <div class="carousel-item"><img src="images/carousel_index/Banniere1.webp" alt=""></div>
+                <div class="carousel-item"><img src="images/carousel_index/Banniere2.webp" alt=""></div>
+                <div class="carousel-item"><img src="images/carousel_index/Banniere3.webp" alt=""></div>
             </div>
             
             <div class="carousel-nav"></div>
