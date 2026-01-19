@@ -5,4 +5,5 @@
     <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css"> 
     <script src="js/script.js"></script>
+    <script src="js/index.js"></script>
 </head>

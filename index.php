@@ -20,24 +20,28 @@
         </section>
 
         <section class="section-carousel">
-            <div class="container carousel-layout">
+    <div class="container carousel-layout">
+        
+        <div id="main-carousel" class="carousel-container">
+            <button class="carousel-btn prev" aria-label="Précédent">❮</button>
+            <button class="carousel-btn next" aria-label="Suivant">❯</button>
 
-                <div id="main-carousel" class="carousel-container">
-                    <div class="carousel-track">
-                        <div class="carousel-item"><img src="animal1.jpg" alt=""></div>
-                        <div class="carousel-item"><img src="animal2.jpg" alt=""></div>
-                        <div class="carousel-item"><img src="animal3.jpg" alt=""></div>
-                    </div>
-
-                    <div class="carousel-nav"></div>
-                </div>
-
-                <div class="carousel-text">
-                    <h2>Leur futur commence par votre visite : découvrez-les tous.</h2>
-                </div>
-
+            <div class="carousel-track">
+                <!-- Mettre les bonnes images-->
+                <div class="carousel-item"><img src="images/attrape poil.webp" alt=""></div>
+                <div class="carousel-item"><img src="images/decapsuleur.webp" alt=""></div>
+                <div class="carousel-item"><img src="images/banniere.webp" alt=""></div>
             </div>
-        </section>
+            
+            <div class="carousel-nav"></div>
+        </div>
+
+        <div class="carousel-text">
+            <h2>Leur futur commence par votre visite : découvrez-les tous.</h2>
+        </div>
+        
+    </div>
+</section>
         <section class="section-about">
             <div class="container">
                 <h3>A Propos de nous</h3>
