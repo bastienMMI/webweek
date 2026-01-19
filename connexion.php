@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="fr">
+
+    <?php 
+  include('header et footer/head.php'); 
+?>
+
+<body>
+  <?php 
+    include('header et footer/header.php'); 
+  ?>
+
+  <main class="connexion-main">
+    <div class="connexion-wrapper">
+      <section class="title-section">
+        <h1>Connexion</h1>
+      </section>
+
+      <section class="form-section">
+        <form action="scripts/identification.php" method="POST">
+          <div class="input-group">
+            <label for="email">E-mail</label>
+            <input type="email" name="email" id="email" required />
+          </div>
+          <div class="input-group">
+            <label for="password">Mot de passe</label>
+            <input type="password" name="password" id="password" required />
+          </div>
+          <button type="submit" class="login-button">Connexion</button>
+          <a href="inscription.php" class="inscription-link">Inscription</a>
+    </div>
+    </form>
+    </section>
+    </div>
+  </main>
+  <?php 
+    include('header et footer/footer.php'); 
+  ?>
+</body>
+
+</html>
