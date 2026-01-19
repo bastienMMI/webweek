@@ -1431,3 +1431,51 @@ footer {
   transform: translateY(-3px);
   transition: all 0.3s ease-in-out;
 }
+.bouton_fixe{
+  position: fixed;
+  right : 20px;
+  bottom : 20px;
+}
+
+.bouton_fixe a{
+  background-color: #ab8a60;
+  color: #fff;
+  padding: 12px 25px;
+  border-radius: 30px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.bouton_fixe a:hover {
+  background-color: var(--brown-text);
+  transform: translateY(-3px);
+  transition: all 0.3s ease-in-out;
+}
+
+.scroll-to-top {
+  width: 50px;
+  height: 50px;
+  background-color: #ab8a60;
+  color: var(--white);
+  border: none;
+  border-radius: 50%;
+  font-size: 24px;
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity 0.3s ease-in-out,
+    visibility 0.3s ease-in-out;
+  z-index: 99;
+}
+
+.scroll-to-top.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+.scroll-to-top:hover {
+  background-color: var(--brown-text);
+  transform: translateY(-3px);
+  transition: all 0.3s ease-in-out;
+}
