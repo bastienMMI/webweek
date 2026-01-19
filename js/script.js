@@ -32,3 +32,4 @@ function init() {
 /* Chargement du DOM complet avant l'exécution */
 
 window.addEventListener("load", init);
+
