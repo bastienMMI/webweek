@@ -1,38 +1,37 @@
+
 <?php
 include('config/configuration.php');
 include('scripts/connection.php');
 
-// 1. Récupération des filtres depuis l'URL (sécurisés)
+// 1. Récupération des filtres depuis l'URL (valeurs par défaut conformes au SQL)
 $espece_filtre = isset($_GET['espece']) ? $_GET['espece'] : 'tous';
+$sexe_filtre = isset($_GET['sexe']) ? $_GET['sexe'] : 'tous';
+$age_max = (isset($_GET['age_max']) && $_GET['age_max'] !== '') ? (int)$_GET['age_max'] : null;
 $tri = isset($_GET['tri']) ? $_GET['tri'] : 'recent';
 
-// 2. Construction de la requête de base
+// 2. Construction de la requête SQL dynamique
 $sql = "SELECT * FROM animal WHERE 1=1"; 
 $params = [];
 
-// Filtre par espèce
+// Filtre par espèce (doit correspondre aux enums du SQL : chat, chien, autre)
 if ($espece_filtre !== 'tous') {
     $sql .= " AND espece = ?";
     $params[] = $espece_filtre;
 }
 
-// Gestion du tri
-switch ($tri) {
-    case 'age_asc':
-        $sql .= " ORDER BY age ASC";
-        break;
-    case 'age_desc':
-        $sql .= " ORDER BY age DESC";
-        break;
-    case 'ancien':
-        $sql .= " ORDER BY date_arrivee ASC";
-        break;
-    default: // 'recent'
-        $sql .= " ORDER BY date_arrivee DESC";
-        break;
+// Filtre par sexe (doit correspondre aux enums du SQL : masculin, feminin)
+if ($sexe_filtre !== 'tous') {
+    $sql .= " AND sexe = ?";
+    $params[] = $sexe_filtre;
 }
 
-// 3. Exécution sécurisée
+// Filtre par âge max
+if ($age_max !== null) {
+    $sql .= " AND age <= ?";
+    $params[] = $age_max;
+}
+
+// 3. Exécution
 $stmt = $connection->prepare($sql);
 $stmt->execute($params);
 $animaux = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -86,43 +85,36 @@ $animaux = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     vous...</p>
             </article>
         </section>
-<section class="filters">
-    <form method="GET" action="adopter.php">
-        <select name="espece" onchange="this.form.submit()">
-            <option value="tous" <?= $espece_filtre == 'tous' ? 'selected' : '' ?>>Toutes les espèces</option>
-            <option value="Chien" <?= $espece_filtre == 'Chien' ? 'selected' : '' ?>>Chiens</option>
-            <option value="Chat" <?= $espece_filtre == 'Chat' ? 'selected' : '' ?>>Chats</option>
-        </select>
 
-        <select name="tri" onchange="this.form.submit()">
-            <option value="recent" <?= $tri == 'recent' ? 'selected' : '' ?>>Plus récents</option>
-            <option value="ancien" <?= $tri == 'ancien' ? 'selected' : '' ?>>Plus anciens</option>
-            <option value="age_asc" <?= $tri == 'age_asc' ? 'selected' : '' ?>>Âge (croissant)</option>
-            <option value="age_desc" <?= $tri == 'age_desc' ? 'selected' : '' ?>>Âge (décroissant)</option>
-        </select>
-    </form>
-</section>
-
-            <details class="filter-item">
-                <summary>Age <span class="arrow">▼</span></summary>
-                <div class="filter-content">
-                    <input type="number" min="0" max="50" placeholder="Entrez un âge">
-                </div>
-            </details>
-
-            <details class="filter-item">
-                <summary>Sexe <span class="arrow">▼</span></summary>
-                <div class="filter-content">
-                    <label><input type="checkbox"> Masculin</label>
-                    <label><input type="checkbox"> Féminin</label>
-                </div>
-            </details>
-        </section>
-
-        <div class="trier-container">
-            <button class="btn-trier">Trier</button>
+<section class="filter-section">
+    <form method="GET" action="adopter.php" class="filter-form">
+        <div class="filter-group">
+            <label>Espèce</label>
+            <select name="espece">
+                <option value="tous">Toutes</option>
+                <option value="chien" <?= $espece_filtre == 'chien' ? 'selected' : '' ?>>Chiens</option>
+                <option value="chat" <?= $espece_filtre == 'chat' ? 'selected' : '' ?>>Chats</option>
+            </select>
         </div>
 
+        <div class="filter-group">
+            <label>Sexe</label>
+            <select name="sexe">
+                <option value="tous">Tous</option>
+                <option value="masculin" <?= $sexe_filtre == 'masculin' ? 'selected' : '' ?>>Mâle</option>
+                <option value="feminin" <?= $sexe_filtre == 'feminin' ? 'selected' : '' ?>>Femelle</option>
+            </select>
+        </div>
+
+        <div class="filter-group">
+            <label>Âge max</label>
+            <input type="number" name="age_max" value="<?= htmlspecialchars($age_max ?? '') ?>" placeholder="Ex: 5">
+        </div>
+
+        <button type="submit" class="btn-filter-submit">Filtrer</button>
+        <a href="adopter.php" class="inscription-link">Réinitialiser</a>
+    </form>
+</section>
 <section class="animal-grid">
     <?php foreach ($animaux as $animal): ?> 
         <?php if ($animal['statut'] === 'disponible'): ?>

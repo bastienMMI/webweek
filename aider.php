@@ -36,7 +36,7 @@
                     <p>Réservé aux professionnels, c'est un don déductible des impôts de l'entreprise.</p>
                 </div>
             </div>
-            <a href="#contact" class="section-benevolat__cta">Contacter</a>
+            <a href="index.php#contact" class="section-benevolat__cta">Contacter</a>
         </section>
     <section class="section-partenaires">
         <h2 class="section-partenaires__title">Partenaires</h2>

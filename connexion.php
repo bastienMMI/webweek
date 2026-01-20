@@ -13,10 +13,10 @@
   <main class="connexion-main">
     <div class="connexion-wrapper">
       <section class="title-section">
-        <h1>Connexion</h1>
+        <h1>Connexion pour admin</h1>
       </section>
 
-      <section class="form-section">
+      <section class="form-inscription-et-connexion">
         <form action="scripts/identification.php" method="POST">
           <div class="input-group">
             <label for="email">E-mail</label>
@@ -26,8 +26,10 @@
             <label for="password">Mot de passe</label>
             <input type="password" name="password" id="password" required />
           </div>
-          <button type="submit" class="login-button">Connexion</button>
-          <a href="inscription.php" class="inscription-link">Inscription</a>
+          <div class="action-group">
+            <button type="submit" class="login-button">Connexion</button>
+            <a href="inscription.php" class="inscription-link">Inscription admin</a>
+         </div>
     </div>
     </form>
     </section>

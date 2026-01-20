@@ -766,14 +766,13 @@ nav a {
    ========================= */
 .admin-main {
   width: 100%;
-  padding: 40px 5%;
   box-sizing: border-box;
   align-content: center;
 }
 
 .admin-wrapper {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   width: 100%;
   max-width: 1100px;
   gap: 30px;
@@ -1207,7 +1206,9 @@ nav a {
   flex-direction: column;
   margin-bottom: 25px;
 }
-
+.input-group label{
+  color: var(--brown-text);
+}
 .input-group label {
   font-weight: 700;
   margin-bottom: 8px;
@@ -1297,7 +1298,7 @@ textarea:focus {
 }
 
 .inscription-link {
-  color: #4f402d;
+  color: var(--brown-text);
   text-decoration: none;
   font-size: 1rem;
   font-weight: 400;
@@ -1587,4 +1588,264 @@ footer {
 
 .product-card form {
     margin-top: 10px;
+}
+
+/* =========================
+   STYLES ADMIN
+   ========================= */
+
+/* Conteneur principal Admin */
+.admin-main {
+    display: flex;
+    justify-content: center;
+}
+
+.admin-wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 1100px;
+    gap: 30px;
+}
+
+
+/* =========================
+    FILTRES CENTRALISÉS
+   ========================= */
+.filter-section {
+    background: var(--brown-text);
+    padding: 25px;
+    border-radius: 15px;
+    margin: 20px auto;
+    max-width: 1100px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+.filter-form {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+
+.filter-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.filter-group label {
+    font-weight: 700;
+    color: var(--brown-text);
+    font-size: 0.9rem;
+}
+
+.filter-group select, 
+.filter-group input {
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid var(--yellow-normal);
+    background: var(--yellow-light);
+    font-family: 'Urbanist', sans-serif;
+    color: var(--brown-text);
+    min-width: 150px;
+}
+
+/* Tableaux et Listes Admin */
+.form-section {
+    gap: 30px;
+    padding: 20px;
+    border-radius: 15px;
+}
+
+.animal-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    border-bottom: 1px solid var(--yellow-normal);
+}
+
+.animal-thumb {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 15px;
+}
+
+/* Bouton spécifique filtre */
+.btn-filter-submit {
+    background-color: var(--yellow-light);
+    color: var(--brown-text);
+    border: none;
+    padding: 12px 30px;
+    border-radius: 8px;
+    font-weight: 700;
+    height: fit-content;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+
+.btn-filter-submit:hover {
+    background-color: var(--yellow-normal);
+}
+.filter-group label {
+    font-weight: 700;
+    color: var(--bg-yellow-normal);
+    font-size: 1rem;
+}
+
+.filter-form a{
+  color: var(--bg-yellow-normal);
+}
+.filter-form input , .filter-form select {
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid var(--bg-yellow-normal);
+    background: var(--bg-yellow-light);
+    font-family: 'Urbanist', sans-serif;
+    color: var(--bg-yellow-normal);
+    min-width: 150px;
+}
+input{
+   margin: 0px
+}
+.admin-titre {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    gap: 20px;
+}
+/* Style spécifique pour les pages Modifier */
+.admin-edit-container {
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    padding: 40px;
+    max-width: 800px;
+    margin: 20px auto;
+}
+
+.edit-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Deux colonnes sur Desktop */
+    gap: 20px;
+}
+
+.full-width {
+    grid-column: span 2;
+}
+
+.edit-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 15px;
+}
+
+.edit-group label {
+    font-weight: 700;
+    color: var(--brown-text);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.edit-group input, 
+.edit-group select, 
+.edit-group textarea {
+    padding: 12px;
+    border: 2px solid var(--yellow-normal);
+    border-radius: 10px;
+    font-family: 'Urbanist', sans-serif;
+    transition: border-color 0.3s;
+}
+
+.edit-group input:focus {
+    outline: none;
+    border-color: var(--green-dark);
+}
+
+/* Responsive Mobile */
+@media (max-width: 768px) {
+    .edit-grid {
+        grid-template-columns: 1fr; /* Une seule colonne sur Mobile */
+    }
+    .full-width {
+        grid-column: span 1;
+    }
+    .admin-edit-container {
+        padding: 20px;
+        margin: 10px;
+    }
+}
+
+.admin-wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    width: 100%;
+    max-width: 1100px;
+    gap: 30px;
+}
+@media (max-width: 768px) {
+  .admin-main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+    .admin-wrapper {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+/* --- Style Spécifique Administration --- */
+.admin-form-container {
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    width: 100%;
+    max-width: 700px;
+    margin: 20px auto;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Desktop : 2 colonnes */
+    gap: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-group.full {
+    grid-column: span 2; /* Prend toute la largeur */
+}
+
+.form-group label {
+    font-weight: 700;
+    color: var(--brown-text);
+}
+
+.form-group input, .form-group select, .form-group textarea {
+    padding: 12px;
+    border: 1px solid var(--yellow-normal);
+    border-radius: 8px;
+    font-family: inherit;
+}
+
+/* Mobile : 1 colonne */
+@media (max-width: 768px) {
+    .form-grid { grid-template-columns: 1fr; }
+    .form-group.full { grid-column: span 1; }
 }

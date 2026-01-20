@@ -1,4 +1,6 @@
-
+        <div class="bouton_fixe">
+            <button id="scrollToTop" class="scroll-to-top">↑</button>
+        </div>
     <footer>
         <div class="footer-container">
             <div class="footer-left">
@@ -7,7 +9,7 @@
             </div>
 
             <div class="footer-right">
-                <a href="mentions-legales.html" class="legal-link">Mentions Légales</a>
+                <a href="" class="legal-link">Mentions Légales</a>
             </div>
         </div>
     </footer>

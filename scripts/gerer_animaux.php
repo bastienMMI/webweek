@@ -11,5 +11,5 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && $_SESSION['role'] === 'admin') {
     $stmt = $connection->prepare($sql);
     $stmt->execute([$nom, $statut, $id]);
 
-    header("Location: ../admin.php?msg=modifie");
+    header("Location: admin.php?msg=modifie");
 }

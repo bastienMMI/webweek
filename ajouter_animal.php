@@ -1,46 +1,69 @@
-<!DOCTYPE html>
-<html lang="fr">
-    <?php 
-  include('header et footer/head.php'); 
+<?php 
+session_start();
+include('config/configuration.php');
+include('scripts/connection.php');
+
+if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
+    header("Location:connexion.php");
+    exit();
+}
+
+include('header et footer/head.php'); 
 ?>
 <body>
-    <?php 
-        include('header et footer/header.php'); 
-    ?>
-    <div class="form-container">
-        <h1>Ajouter un nouvel animal</h1>
+<?php include('header et footer/header.php'); ?>
+
+<main class="section-contact">
+    <div class="admin-edit-container">
+        <h1 class="contact-main-title">Nouvel Animal</h1>
+        <p>Ajoutez un nouveau pensionnaire au catalogue du refuge.</p>
+        
         <form action="scripts/ajouter_animal.php" method="POST" enctype="multipart/form-data">
-            <label>Nom</label>
-            <input type="text" name="nom" required>
-            
-            <label>Espèce</label>
-            <select name="espece">
-                <option value="Chien">Chien</option>
-                <option value="Chat">Chat</option>
-                <option value="NAC">NAC</option>
-            </select>
+            <div class="edit-grid">
+                <div class="edit-group">
+                    <label>Nom de l'animal</label>
+                    <input type="text" name="nom" required>
+                </div>
 
-            <label>Âge</label>
-            <input type="number" name="age" required>
+                <div class="edit-group">
+                    <label>Espèce</label>
+                    <select name="espece">
+                        <option value="Chien">Chien</option>
+                        <option value="Chat">Chat</option>
+                        <option value="NAC">NAC</option>
+                    </select>
+                </div>
 
-            <label>Sexe</label>
-            <select name="sexe">
-                <option value="Mâle">Mâle</option>
-                <option value="Femelle">Femelle</option>
-            </select>
+                <div class="edit-group">
+                    <label>Âge</label>
+                    <input type="number" name="age">
+                </div>
 
-            <label>Description</label>
-            <textarea name="description"></textarea>
+                <div class="edit-group">
+                    <label>Sexe</label>
+                    <select name="sexe">
+                        <option value="masculin">Masculin</option>
+                        <option value="feminin">Féminin</option>
+                    </select>
+                </div>
 
-            <label>Photo</label>
-            <input type="file" name="photo" accept="image/*" required>
+                <div class="edit-group">
+                    <label>Photo</label>
+                    <input type="file" name="photo" accept="image/*" required>
+                </div>
 
-            <button type="submit" class="btn-submit">Enregistrer</button>
+                <div class="edit-group full-width">
+                    <label>Description</label>
+                    <textarea name="description" rows="4"></textarea>
+                </div>
+            </div>
+
+            <div style="margin-top: 30px; display: flex; gap: 20px;">
+                <button type="submit" class="login-button" style="border:none; width: 200px;">Ajouter l'animal</button>
+                <a href="admin.php" style="padding-top:10px; color: var(--brown-text);">Annuler</a>
+            </div>
         </form>
     </div>
-
-    <?php 
-        include('header et footer/footer.php'); 
-    ?>
+</main>
+<?php include('header et footer/footer.php'); ?>
 </body>
-</html>
