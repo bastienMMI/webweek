@@ -336,32 +336,19 @@ nav a {
   color: var(--yellow-light);
 }
 
-/* --- Carrousel automatique sur la page aider.php --- */
-.section-partenaires__carousel {
-  overflow: hidden; /* On cache ce qui dépasse */
-  width: 100%;
-  padding: 20px 0;
+/* --- Carrousel --- */
+.carousel-container {
+    position: relative;
+    width: 100%;
+    max-width: 800px; 
+    margin: 0 auto;
+    overflow: hidden;
+    border-radius: 15px; 
 }
 
 .carousel-track {
-  display: flex;
-  width: calc(250px * 22);
-  animation: scroll 40s linear infinite;
-  gap: 15px;
-}
-
-.partenaire-card {
-  width: 250px;
-  flex-shrink: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-/* Définition du mouvement */
-@keyframes scroll {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(calc(-250px * 11)); } /* Déplace de la moitié du total */
+    display: flex;
+    transition: transform 0.5s ease-in-out;
 }
 
 .carousel-item {
@@ -428,7 +415,44 @@ nav a {
   }
   .carousel-container { height: 450px; }
 }
+/* Conteneur principal qui cache le débordement */
+.section-partenaires__carousel {
+  width: 100%;
+  overflow: hidden; /* Important pour cacher les logos qui dépassent */
+  background-color: var(--yellow-normal);
+  padding: 20px 0;
+}
 
+/* La piste qui défile */
+.carousel-defilement {
+  display: flex;
+  gap: 15px;
+  width: max-content; /* S'adapte à la largeur totale des logos */
+  animation: scroll-auto 30s linear infinite; /* Lance l'animation */
+}
+
+.partenaire-card {
+  min-width: 150px;
+  flex: 0 0 auto;
+  background: #fff;
+  border-radius: 10px;
+  padding: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Création de l'animation de défilement */
+@keyframes scroll-auto {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    /* Ajustez la valeur selon le nombre de logos pour un cycle fluide */
+    transform: translateX(-50%); 
+  }
+}
 /* =========================
    ACCUEIL : A PROPOS
    ========================= */
@@ -889,7 +913,7 @@ nav a {
    ========================= */
 /* Bannière */
 .banniere-aider {
-  background-image: url("../images/banniere.webp");
+  background-image: url("/images/banniere.webp");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -1415,7 +1439,6 @@ footer {
 /* Stylisation du bouton Remonter */
 
 .scroll-to-top {
-  position: fixed;
   bottom: 30px;
   right: 30px;
   width: 50px;
@@ -1445,7 +1468,7 @@ footer {
   transition: all 0.3s ease-in-out;
 }
 .bouton_fixe{
-  position: fixed;
+  position : fixed;
   right : 20px;
   bottom : 20px;
 }

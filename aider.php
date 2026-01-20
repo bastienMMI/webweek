@@ -38,10 +38,10 @@
             </div>
             <a href="#contact" class="section-benevolat__cta">Contacter</a>
         </section>
-        <section class="section-partenaires">
-            <h2 class="section-partenaires__title">Partenaires</h2>
-             <div class="section-partenaires__carousel">
-                <div class="carousel-track">
+    <section class="section-partenaires">
+        <h2 class="section-partenaires__title">Partenaires</h2>
+            <div class="section-partenaires__carousel">
+                <div class="carousel-defilement">
                     <div class="partenaire-card"><img src="images/partenaires/Logo_Auvergne-Rhone-Alpes.svg" alt="LogoAURA"> </div>
                     <div class="partenaire-card"><img src="images/partenaires/Logo_Haute_Loire_2014.svg" alt="LogoHauteLoire"></div>
                     <div class="partenaire-card"><img src="images/partenaires/LogoCommunaute_d'agglomeration_du_Puy-en-Velay.webp" alt="LogoAggloDuPuy"></div>
@@ -56,7 +56,7 @@
                 </div>
             </div>
         </section>
-
+</section>
     </main>
     <?php 
         include('header et footer/footer.php'); 

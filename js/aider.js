@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const track = document.querySelector(".section-partenaires__carousel .carousel-track");
+  const track = document.querySelector(".section-partenaires__carousel .carousel-defilement");
 
   if (!track) return;
 

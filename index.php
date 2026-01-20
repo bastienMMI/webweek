@@ -105,7 +105,8 @@
         <div class="bouton_fixe">
         <button id="scrollToTop" class="scroll-to-top">↑</button>
         <a href="don.php" id="bouton_don">Faire un don</a>
-    </div>
+        
+        </div>
     </main>
 
 <?php 

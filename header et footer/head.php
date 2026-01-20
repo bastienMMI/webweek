@@ -7,4 +7,5 @@
     <script src="js/script.js"></script>
     <script src="js/index.js"></script>
     <script src="js/aider.js"></script>
+    <link rel="icon" href="images/Favicon.png" type="image/svg+xml">
 </head>
