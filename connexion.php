@@ -13,7 +13,7 @@
   <main class="connexion-main">
     <div class="connexion-wrapper">
       <section class="title-section">
-        <h1>Connexion pour admin</h1>
+        <h1>Connexion</h1>
       </section>
 
       <section class="form-inscription-et-connexion">
@@ -28,7 +28,7 @@
           </div>
           <div class="action-group">
             <button type="submit" class="login-button">Connexion</button>
-            <a href="inscription.php" class="inscription-link">Inscription admin</a>
+            <a href="inscription.php" class="inscription-link">Inscription</a>
          </div>
     </div>
     </form>

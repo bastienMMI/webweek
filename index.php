@@ -73,24 +73,24 @@
                <h3>Formulaire</h3>
                 <form>
                     <div class="form-row">
-                        <div class="input-group">
+                        <div class="input-group-index">
                             <label>Nom</label>
                             <input type="text">
                         </div>
-                        <div class="input-group">
+                        <div class="input-group-index">
                             <label>E-mail</label>
                             <input type="email">
                         </div>
                     </div>
-                    <div class="input-group">
+                    <div class="input-group-index">
                         <label>Téléphone</label>
                         <input type="tel">
                     </div>
-                    <div class="input-group">
+                    <div class="input-group-index">
                         <label>Objet</label>
                         <input type="text">
                     </div>
-                    <div class="input-group">
+                    <div class="input-group-index">
                         <label>Message</label>
                         <textarea rows="4"></textarea>
                     </div>

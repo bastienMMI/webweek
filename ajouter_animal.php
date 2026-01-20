@@ -58,9 +58,10 @@ include('header et footer/head.php');
                 </div>
             </div>
 
-            <div style="margin-top: 30px; display: flex; gap: 20px;">
-                <button type="submit" class="login-button" style="border:none; width: 200px;">Ajouter l'animal</button>
-                <a href="admin.php" style="padding-top:10px; color: var(--brown-text);">Annuler</a>
+<div class="form-actions">
+    <button type="submit" class="login-button btn-save">Ajouter l'animal</button>
+    <a href="admin.php" class="btn-cancel">Annuler</a>
+</div>
             </div>
         </form>
     </div>

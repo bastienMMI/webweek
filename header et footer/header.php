@@ -1,26 +1,36 @@
-    <header>
-        <input type="checkbox" id="menu-toggle" class="menu-checkbox">
+<header>
+    <input type="checkbox" id="menu-toggle" class="menu-checkbox">
 
-        <label for="menu-toggle" class="burger-menu">
-            <span></span><span></span><span></span>
-        </label>
+    <label for="menu-toggle" class="burger-menu">
+        <span></span><span></span><span></span>
+    </label>
 
-        <div class="logo">
-            <a href="index.php"><img src="images/Logo-1.webp" alt="Logo SPA Haute-Loire"></a>
-        </div>
+    <div class="logo">
+        <a href="index.php"><img src="images/Logo-1.webp" alt="Logo SPA Haute-Loire"></a>
+    </div>
 
-        <nav>
-            <ul>
-                <li><a href="adopter.php">Adopter</a></li>
-                <li><a href="aider.php">Nous aider</a></li>
-                <li><a href="index.php#contact">Contact</a></li>
-                <li><a href="boutique.php">Boutique</a></li>
-            </ul>
-        </nav>
+    <nav>
+        <ul>
+            <li><a href="adopter.php">Adopter</a></li>
+            <li><a href="aider.php">Nous aider</a></li>
+            <li><a href="index.php#contact">Contact</a></li>
+            <li><a href="boutique.php">Boutique</a></li>
+            
+            <?php if (isset($_SESSION['user_id'])): ?>
+                <li class="mobile-only"><a href="mon-compte.php">Mon Compte</a></li>
+                <li class="mobile-only"><a href="scripts/deconnexion.php" style="color: #ff4d4d;">Déconnexion</a></li>
+            <?php else: ?>
+                <li class="mobile-only"><a href="connexion.php">Connexion</a></li>
+            <?php endif; ?>
+        </ul>
+    </nav>
 
-        <div class="user-access">
-            <a href="connexion.php">
-                <img src="images/connexion.webp" alt="Icône utilisateur">
-            </a>
-        </div>
-    </header>
+    <div class="user-access">
+        <?php if (isset($_SESSION['user_id'])): ?>
+            <a href="mon-compte.php" class="btn-profil">Mon Compte</a>
+            <a href="scripts/deconnexion.php" class="btn-deco">Déconnexion</a>
+        <?php else: ?>
+            <a href="connexion.php" class="btn-connexion-desktop">Connexion</a>
+        <?php endif; ?>
+    </div>
+</header>

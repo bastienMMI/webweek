@@ -2,57 +2,62 @@
 session_start();
 include('config/configuration.php');
 include('scripts/connection.php');
+include('classes/produit.php');
 
-// Supprimer un article
+$produitManager = new ProduitManager($connection);
+
 if (isset($_GET['remove'])) {
     unset($_SESSION['panier'][$_GET['remove']]);
     header('Location: panier.php');
+    exit();
 }
 ?>
 <!doctype html>
 <html lang="fr">
-<?php include('header et footer/head.php'); ?>
-<body>
-    <?php include('header et footer/header.php'); ?>
-    <main class="container">
-        <h1>Votre Panier</h1>
-        <?php if (empty($_SESSION['panier'])): ?>
-            <p>Votre panier est vide.</p>
-        <?php else: ?>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Produit</th>
-                        <th>Prix</th>
-                        <th>Quantité</th>
-                        <th>Total</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody>
+    <?php include('header et footer/head.php'); ?>
+        <body>
+            <?php include('header et footer/header.php'); ?>
+                <main class="container">
+                    <h1>Votre Panier</h1>
+                    <?php if (empty($_SESSION['panier'])): ?>
+                    <p>Votre panier est vide.</p>
+                    <?php else: ?>
+                    <table class="panier-table">
+                        <tr class="table-header">
+                            <th>Produit</th>
+                            <th>Prix</th>
+                            <th>Quantité</th>
+                            <th>Total</th>
+                            <th>Action</th>
+                        </tr>
                     <?php 
-                    $total_general = 0;
-                    foreach ($_SESSION['panier'] as $id => $quantite): 
-                        // Récupérer les détails en BDD pour chaque ID
-                        $stmt = $connection->prepare("SELECT * FROM produit WHERE id_produit = ?");
-                        $stmt->execute([$id]);
-                        $p = $stmt->fetch();
-                        $sous_total = $p['prix'] * $quantite;
-                        $total_general += $sous_total;
+                        $total_general = 0;
+                        foreach ($_SESSION['panier'] as $id => $quantite): 
+                        $p = $produitManager->getProduitById($id); 
+                        if ($p):
+                            $sous_total = $p['prix'] * $quantite;
+                            $total_general += $sous_total;
                     ?>
-                    <tr>
-                        <td><?= htmlspecialchars($p['nom_produit']) ?></td>
-                        <td><?= number_format($p['prix'], 2) ?> €</td>
-                        <td><?= $quantite ?></td>
-                        <td><?= number_format($sous_total, 2) ?> €</td>
-                        <td><a href="panier.php?remove=<?= $id ?>">Supprimer</a></td>
-                    </tr>
-                    <?php endforeach; ?>
-                </tbody>
-            </table>
-            <h3>Total à régler : <?= number_format($total_general, 2) ?> €</h3>
-            <button class="valider-btn">Passer la commande</button>
-        <?php endif; ?>
-    </main>
-</body>
+                        <tr>
+                            <td><?= htmlspecialchars($p['nom_produit']) ?></td>
+                            <td><?= number_format($p['prix'], 2) ?> €</td>
+                            <td><?= $quantite ?></td>
+                            <td><?= number_format($sous_total, 2) ?> €</td>
+                            <td><a href="panier.php?remove=<?= $id ?>" style="color: red;">Supprimer</a></td>
+                        </tr>
+                    <?php 
+                        endif;
+                        endforeach; 
+                    ?>
+                    </table>
+                <div class="panier-footer" style="margin-top: 20px; text-align: right;">
+                    <h3>Total : <?= number_format($total_general, 2) ?> €</h3>
+                    <form action="scripts/valider_panier.php" method="POST" style="margin-top: 15px;">
+                        <button type="submit" class="login-button">Confirmer et commander</button>
+                    </form>
+                </div>
+            <?php endif; ?>
+            </main>
+        <?php include('header et footer/footer.php'); ?>
+    </body>
 </html>

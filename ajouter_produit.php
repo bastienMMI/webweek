@@ -47,7 +47,7 @@ include('header et footer/head.php');
             </div>
 
             <div style="margin-top: 30px; display: flex; gap: 20px;">
-                <button type="submit" class="login-button" style="border:none; width: 200px;">Enregistrer le produit</button>
+                <button type="submit" class="login-button" style="border:none; width: 200px;">Enregistrer</button>
                 <a href="admin.php" style="padding-top:10px; color: var(--brown-text);">Annuler</a>
             </div>
         </form>

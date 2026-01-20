@@ -1,34 +1,27 @@
 <?php
-session_start(); // Initialise la session pour stocker le panier
+session_start();
 include('config/configuration.php');
 include('scripts/connection.php');
+include('classes/produit.php');
+
+$produitManager = new ProduitManager($connection);
 
 // Logique d'ajout au panier
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_to_cart'])) {
-    $id = $_POST['product_id'];
+if (isset($_POST['add_to_cart'])) {
+    $id_p = $_POST['product_id'];
+    if (!isset($_SESSION['panier'])) { $_SESSION['panier'] = []; }
     
-    if (!isset($_SESSION['panier'])) {
-        $_SESSION['panier'] = [];
-    }
-
-    // Si le produit existe déjà, on augmente la quantité, sinon on l'ajoute
-    if (isset($_SESSION['panier'][$id])) {
-        $_SESSION['panier'][$id]++;
+    if (isset($_SESSION['panier'][$id_p])) {
+        $_SESSION['panier'][$id_p]++;
     } else {
-        $_SESSION['panier'][$id] = 1;
+        $_SESSION['panier'][$id_p] = 1;
     }
-    
-    // Optionnel : Rediriger pour éviter de renvoyer le formulaire en actualisant
     header("Location: Boutique.php");
     exit();
 }
 
-// Récupération des produits
-$query = "SELECT * FROM produit ORDER BY id_produit DESC";
-$results = $connection->query($query);
-$produits = $results->fetchAll(PDO::FETCH_ASSOC);
+$produits = $produitManager->getAllProduits();
 ?>
-
 <!doctype html>
 <html lang="fr">
 <?php include('header et footer/head.php'); ?>
@@ -37,7 +30,7 @@ $produits = $results->fetchAll(PDO::FETCH_ASSOC);
 
     <main>
       <section class="product-gallery">
-            <div style="display: flex; justify-content: space-between; align-items: center;">
+        <div class="boutique-top">
                 <h1>Notre Boutique</h1>
                 <a href="panier.php" class="btn-panier">
                     🛒 Panier (<?= isset($_SESSION['panier']) ? array_sum($_SESSION['panier']) : 0 ?>)

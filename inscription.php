@@ -66,12 +66,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <main class="connexion-main">
         <div class="connexion-wrapper">
             <section class="title-section">
-                <h1>Inscription admin</h1>
-                <?php if($message): ?>
-                    <p style="color: #d9534f; background: #f2dede; padding: 10px; border-radius: 5px; margin-top: 10px;">
-                        <?= $message ?>
-                    </p>
-                <?php endif; ?>
+                <h1>Inscription</h1>
             </section>
 
             <section class="form-inscription-et-connexion">
@@ -104,7 +99,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
                     <div class="action-group">
                         <button type="submit" class="login-button">S'inscrire</button>
-                    <a href="connexion.php" class="inscription-link">Connexion admin</a>
+                    <a href="connexion.php" class="inscription-link">Connexion</a>
                     </div>
                 </form>
             </section>
