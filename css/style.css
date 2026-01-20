@@ -336,19 +336,32 @@ nav a {
   color: var(--yellow-light);
 }
 
-/* --- Carrousel --- */
-.carousel-container {
-    position: relative;
-    width: 100%;
-    max-width: 800px; 
-    margin: 0 auto;
-    overflow: hidden;
-    border-radius: 15px; 
+/* --- Carrousel automatique sur la page aider.php --- */
+.section-partenaires__carousel {
+  overflow: hidden; /* On cache ce qui dépasse */
+  width: 100%;
+  padding: 20px 0;
 }
 
 .carousel-track {
-    display: flex;
-    transition: transform 0.5s ease-in-out;
+  display: flex;
+  width: calc(250px * 22);
+  animation: scroll 40s linear infinite;
+  gap: 15px;
+}
+
+.partenaire-card {
+  width: 250px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Définition du mouvement */
+@keyframes scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(calc(-250px * 11)); } /* Déplace de la moitié du total */
 }
 
 .carousel-item {
@@ -876,7 +889,7 @@ nav a {
    ========================= */
 /* Bannière */
 .banniere-aider {
-  background-image: url("/images/banniere.webp");
+  background-image: url("../images/banniere.webp");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;

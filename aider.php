@@ -40,42 +40,20 @@
         </section>
         <section class="section-partenaires">
             <h2 class="section-partenaires__title">Partenaires</h2>
-            <div class="section-partenaires__carousel">
-                <!-- Logos de partenaires -->
-                <div class="partenaire-card">
-                    <img src="images/partenaires/Logo_Auvergne-Rhone-Alpes.svg" alt="Partenaire 1">
+             <div class="section-partenaires__carousel">
+                <div class="carousel-track">
+                    <div class="partenaire-card"><img src="images/partenaires/Logo_Auvergne-Rhone-Alpes.svg" alt="LogoAURA"> </div>
+                    <div class="partenaire-card"><img src="images/partenaires/Logo_Haute_Loire_2014.svg" alt="LogoHauteLoire"></div>
+                    <div class="partenaire-card"><img src="images/partenaires/LogoCommunaute_d'agglomeration_du_Puy-en-Velay.webp" alt="LogoAggloDuPuy"></div>
+                    <div class="partenaire-card"><img src="images/partenaires/LePuy-en-VelayLogo.webp" alt="LogoPEV"></div>
+                    <div class="partenaire-card"><img src="images/partenaires/Logo-MairiePOLIGNAClogoPBVF.webp" alt="LogoMairiePolignac"></div>
+                    <div class="partenaire-card"><img src="images/partenaires/Logo-Defense-delAnimal-2023_quadri-1.webp" alt="LogoDefenseAnimale"></div>
+                    <div class="partenaire-card"><img src="images/partenaires/Fondation_30_millions_d'amis_logo.svg"alt="Logo30MillionsDamis"></div>
+                    <div class="partenaire-card"><img src="images/partenaires/Logo_Carrefour.svg" alt="LogoCarrefour"></div>
+                    <div class="partenaire-card"><img src="images/partenaires/Super_U_logo_2009.svg" alt="LogoSuperU"></div>
+                    <div class="partenaire-card"><img src="images/partenaires/logo_ARGILE_DU_VELAY-horizontal.webp" alt="LogoArgileVelay"></div>
+                    <div class="partenaire-card"><img src="images/partenaires/logo_ALTILIVET_CMJN.webp" alt="LogoAltilivet"></div>
                 </div>
-                <div class="partenaire-card">
-                    <img src="images/partenaires/Logo_Haute_Loire_2014.svg" alt="Partenaire 2">
-                </div>
-                <div class="partenaire-card">
-                    <img src="images/partenaires/LogoCommunaute_d'agglomeration_du_Puy-en-Velay.webp" alt="Partenaire 3">
-                </div>
-                <div class="partenaire-card">
-                    <img src="images/partenaires/LePuy-en-VelayLogo.webp" alt="Partenaire 4">
-                </div>
-                <div class="partenaire-card">
-                    <img src="images/partenaires/Logo-MairiePOLIGNAClogoPBVF.webp" alt="Partenaire 5">
-                </div>
-                <div class="partenaire-card">
-                    <img src="images/partenaires/Logo-Defense-delAnimal-2023_quadri-1.webp" alt="Partenaire 6">
-                </div>
-                <div class="partenaire-card">
-                    <img src="images/partenaires/Fondation_30_millions_d'amis_logo.svg" alt="Partenaire 7">
-                </div>
-                <div class="partenaire-card">
-                    <img src="images/partenaires/Logo_Carrefour.svg" alt="Partenaire 8">
-                </div>
-                <div class="partenaire-card">
-                    <img src="images/partenaires/Super_U_logo_2009.svg" alt="Partenaire 9">
-                </div>
-                <div class="partenaire-card">
-                    <img src="images/partenaires/logo_ARGILE_DU_VELAY-horizontal.webp" alt="Partenaire 10">
-                </div>
-            </div>
-            <div class="partenaire-card">
-                <img src="images/partenaires/logo_ALTILIVET_CMJN.webp" alt="Partenaire 12">
-            </div>
             </div>
         </section>
 
