@@ -57,22 +57,20 @@
         </section>
 
 
-        <section id="contact" class="section-contact">
-            <div class="container contact-grid">
-
-                <div class="contact-info">
-                    <h3>Contact</h3>
-                    <p>7 Impasse du Refuge ZA Plaine de Bleu<br>43000 Polignac</p>
-                    <p>spa-haute-loire@yahoo.fr</p>
-                    <p>04 71 02 65 50</p>
-
-
-                </div>
-                <div id="map-container" class="map-box"></div>
+<section id="contact" class="section-contact">
+    <div class="container">
+        <div class="contact-flex-container">
+            <div class="contact-info">
+                <h3>Contact</h3>
+                <p>7 Impasse du Refuge ZA Plaine de Bleu<br>43000 Polignac</p>
+                <p>spa-haute-loire@yahoo.fr</p>
+                <p>04 71 02 65 50</p>
             </div>
+            <div id="mapSPA_XX" class="map-box"></div>
+        </div>
 
-            <div class="contact-form">
-                <h3>Formulaire</h3>
+        <div class="contact-form">
+               <h3>Formulaire</h3>
                 <form>
                     <div class="form-row">
                         <div class="input-group">
@@ -99,13 +97,13 @@
                     <button type="submit" class="btn-submit">Envoyer</button>
                 </form>
             </div>
-
-            </div>
+    </div>
+</section>
         </section>
         <div class="bouton_fixe">
         <button id="scrollToTop" class="scroll-to-top">↑</button>
         <a href="don.php" id="bouton_don">Faire un don</a>
-        
+
         </div>
     </main>
 
