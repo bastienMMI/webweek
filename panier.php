@@ -58,7 +58,7 @@ if (isset($_GET['remove'])) {
                         <?php else: ?>
             <div class="connexion_message">
                 <p>
-                    Veuillez vous connecter pour soutenir notre refuge
+                    Veuillez vous connecter pour acheter
                 </p>
                 <a href="connexion.php" class="valider-btn" style="text-decoration: none; display: inline-block;">
                     Se connecter
