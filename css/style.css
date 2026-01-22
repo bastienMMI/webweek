@@ -758,7 +758,6 @@ nav a {
 
 @media (max-width: 480px) {
   .gallery {
-    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
     gap: 0.6rem;
   }
   .product-card {
@@ -1907,7 +1906,6 @@ input {
 }
 
 .account-container {
-  margin-top: 50px;
   min-height: 70vh;
 }
 
@@ -2128,4 +2126,52 @@ input {
 .text-danger {
   color: var(--red) !important;
   text-decoration: none;
+}
+/* --- Style d'origine pour les blocs --- */
+.card-commande {
+  background: var(--yellow-light);
+  border: 1px solid var(--text-yellow-light);
+  border-radius: 8px;
+  padding: 15px;
+  margin-bottom: 20px;
+}
+
+/* --- Mise en page à deux colonnes --- */
+.account-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+  align-items: start;
+}
+
+/* --- Titres des sections --- */
+.account-section-title {
+  color: var(--brown-text);
+  border-bottom: 2px solid var(--yellow-normal);
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+}
+
+/* Responsive mobile */
+@media (max-width: 768px) {
+  .account-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .historique {
+    flex-direction: column;
+  }
+}
+.historique {
+  display: flex;
+  flex-direction: row;
+  gap: 50px;
+}
+
+.connexion_message {
+  text-align: center;
+  margin-top: 20px;
+  padding: 15px;
+  background: #f8d7da;
+  border: 1px solid #f5c6cb;
+  border-radius: 8px;
 }

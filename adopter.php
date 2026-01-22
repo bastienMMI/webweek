@@ -5,7 +5,6 @@ include('classes/animal.php');
 
 $animalManager = new AnimalManager($connection);
 
-// Chargement initial (PHP classique au premier affichage)
 $espece_filtre = $_GET['espece'] ?? 'tous';
 $sexe_filtre = $_GET['sexe'] ?? 'tous';
 $age_max = (!empty($_GET['age_max'])) ? (int)$_GET['age_max'] : null;

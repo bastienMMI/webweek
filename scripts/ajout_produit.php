@@ -1,30 +1,23 @@
 <?php
 session_start();
-include('../config/configuration.php');
-include('connection.php');
+require_once(__DIR__ . '/connection.php');
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_SESSION['role']) && $_SESSION['role'] === 'admin') {
-    $nom = $_POST['nom'];
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && $_SESSION['role'] === 'admin') {
+    $nom = htmlspecialchars($_POST['nom']);
     $prix = $_POST['prix'];
-    $description = $_POST['description'];
-    $stock = $_POST['stock'];
+    $description = htmlspecialchars($_POST['description']);
+    // Chemin absolu pour les images
+    $dossier_images = dirname(__DIR__) . "/images/";
 
-    // Gestion de l'image
-    $photo_name = "default_product.jpg"; // Image par défaut si besoin
-    if (isset($_FILES['photo']) && $_FILES['photo']['error'] == 0) {
-        $photo_name = time() . "_" . $_FILES['photo']['name'];
-        move_uploaded_file($_FILES['photo']['tmp_name'], "../images/boutique/" . $photo_name);
+    if (isset($_FILES['photo']) && $_FILES['photo']['error'] === 0) {
+        $nom_image = time() . "_" . basename($_FILES['photo']['name']);
+        if (move_uploaded_file($_FILES['photo']['tmp_name'], $dossier_images . $nom_image)) {
+            $sql = "INSERT INTO produit (nom_produit, prix, description, photo) VALUES (?, ?, ?, ?)";
+            $stmt = $connection->prepare($sql);
+            $stmt->execute([$nom, $prix, $description, $nom_image]);
+            header("Location: ../admin.php?msg=ajoute");
+            exit();
+        }
     }
-
-    // Insertion SQL (ajustez les noms de colonnes selon votre table 'produit')
-    $sql = "INSERT INTO produit (nom, prix, description, stock, photo) VALUES (?, ?, ?, ?, ?)";
-    $stmt = $connection->prepare($sql);
-    
-    if ($stmt->execute([$nom, $prix, $description, $stock, $photo_name])) {
-        header("Location: ../admin.php?success=1");
-    } else {
-        echo "Erreur lors de l'ajout.";
-    }
-} else {
-    header("Location: ../index.php");
 }
+?>

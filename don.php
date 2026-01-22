@@ -11,8 +11,8 @@
     <main class="don-hero">
       <div class="don-card">
         <h1>Mon Don</h1>
-
-        <form action="#">
+        <p>Merci de soutenir notre refuge et nos pensionnaires. Votre générosité fait une réelle différence dans leur vie.</p>
+        <form action="scripts/traiter_don.php" method="POST">
           <div class="form-row">
             <div class="input-group">
               <label for="nom">Nom</label>
@@ -36,12 +36,19 @@
 
           <div class="input-group">
             <label for="montant">Montant Libre</label>
-            <input type="number" id="montant" placeholder="€" />
-          </div>
-
-          <div class="center-btn">
-            <button type="submit" class="valider-btn">Valider</button>
-          </div>
+            <input type="number" name="montant" placeholder="€" required />       
+            <?php if (isset($_SESSION['user_id'])): ?>
+            <button type="submit" class="btn-submit">Valider le don</button>
+          <?php else: ?>
+            <div class="connexion_message">
+                <p>
+                    Veuillez vous connecter pour soutenir notre refuge
+                </p>
+                <a href="connexion.php" class="valider-btn" style="text-decoration: none; display: inline-block;">
+                    Se connecter
+                </a>
+            </div>
+          <?php endif; ?>
         </form>
       </div>
     </main>

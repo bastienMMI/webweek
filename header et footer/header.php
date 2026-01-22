@@ -25,9 +25,14 @@
         </ul>
     </nav>
 
-    <div class="user-access">
+<div class="user-access">
         <?php if (isset($_SESSION['user_id'])): ?>
             <a href="mon-compte.php" class="btn-profil">Mon Compte</a>
+            
+            <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin'): ?>
+                <a href="admin.php" class="btn-admin" style="background: #ab8a60; color: white; padding: 8px 15px; border-radius: 20px; text-decoration: none; font-weight: bold;">Admin</a>
+            <?php endif; ?>
+            
             <a href="scripts/deconnexion.php" class="btn-deco">Déconnexion</a>
         <?php else: ?>
             <a href="connexion.php" class="btn-connexion-desktop">Connexion</a>

@@ -4,8 +4,7 @@ include('config/configuration.php');
 include('scripts/connection.php');
 
 if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
-    header("Location:connexion.php");
-    exit();
+    header("Location:connexion.php");exit();
 }
 
 $id = $_GET['id'];
@@ -22,6 +21,7 @@ include('header et footer/head.php');
 <div class="admin-edit-container">
     <form action="scripts/update_produit.php" method="POST">
         <input type="hidden" name="id" value="<?= $produit['id_produit'] ?>">
+        <input type="hidden" name="id_produit" value="<?= $produit['id_produit'] ?>">
         
         <div class="edit-grid">
             <div class="edit-group">

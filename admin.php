@@ -10,6 +10,7 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
 
 $animaux = $connection->query("SELECT * FROM animal ORDER BY id_animal DESC")->fetchAll(PDO::FETCH_ASSOC);
 $produits = $connection->query("SELECT * FROM produit ORDER BY id_produit DESC")->fetchAll(PDO::FETCH_ASSOC);
+$dons = $connection->query("SELECT * FROM don ORDER BY date_don DESC")->fetchAll(PDO::FETCH_ASSOC);
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -66,6 +67,17 @@ $produits = $connection->query("SELECT * FROM produit ORDER BY id_produit DESC")
                             <a href="modifier_produit.php?id=<?= $p['id_produit'] ?>" class="edit-btn">Modifier</a>
                             <a href="scripts/supprimer_produit.php?id=<?= $p['id_produit'] ?>" class="delete-btn" onclick="return confirm('Supprimer ?');">Supprimer</a>
                         </div>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+        </div>
+        <div class="form-section">
+            <h2>Historique des Dons</h2>
+            <div class="admin-table">
+                <?php foreach ($dons as $d): ?>
+                    <div class="animal-row">
+                        <span><?= $d['montant'] ?> € par <?= htmlspecialchars($d['nom']) ?></span>
+                        <span>Le <?= $d['date_don'] ?></span>
                     </div>
                 <?php endforeach; ?>
             </div>

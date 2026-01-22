@@ -6,7 +6,6 @@ include('classes/produit.php');
 
 $produitManager = new ProduitManager($connection);
 
-// Logique d'ajout au panier
 if (isset($_POST['add_to_cart'])) {
     $id_p = $_POST['product_id'];
     if (!isset($_SESSION['panier'])) { $_SESSION['panier'] = []; }
@@ -16,7 +15,7 @@ if (isset($_POST['add_to_cart'])) {
     } else {
         $_SESSION['panier'][$id_p] = 1;
     }
-    header("Location: Boutique.php");
+    header("Location: ./boutique.php");
     exit();
 }
 
@@ -47,7 +46,7 @@ $produits = $produitManager->getAllProduits();
                         <p class="desc"><?= htmlspecialchars($p['description']) ?></p>
                         
                         <?php if($p['stock'] > 0): ?>
-                            <form method="POST">
+                            <form action="boutique.php" method="POST">
                                 <input type="hidden" name="product_id" value="<?= $p['id_produit'] ?>">
                                 <button type="submit" name="add_to_cart" class="btn-buy">Ajouter au panier</button>
                             </form>

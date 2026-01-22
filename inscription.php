@@ -1,8 +1,4 @@
 <?php
-/**
- * Page d'inscription des utilisateurs
- * Gère la création de nouveaux comptes utilisateurs
- */
 session_start();
 include('config/configuration.php');
 include('scripts/connection.php');
@@ -21,14 +17,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $pwd = password_hash($_POST['password'], PASSWORD_DEFAULT);
     $role = 'client'; // Rôle par défaut
 
-    // Vérification si l'email existe déjà
     $stmt_email = $connection->prepare("SELECT COUNT(*) FROM utilisateur WHERE email = :email");
     $stmt_email->execute([':email' => $email]);
     
     if ($stmt_email->fetchColumn() > 0) {
         $message = "Cet email est déjà utilisé.";
     } else {
-        // Insertion dans la base de données spa43
         $sql = "INSERT INTO utilisateur (nom, prenom, email, telephone, mot_de_passe, role) 
                 VALUES (:nom, :prenom, :email, :tel, :pwd, :role)";
         
@@ -43,7 +37,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         ]);
 
         if ($success) {
-            // Redirection vers la page de connexion après succès
             header("Location: connexion.php?success=registered");
             exit();
         } else {

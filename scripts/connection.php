@@ -1,7 +1,4 @@
 <?php
-// scripts/connection.php
-
-// AJOUTE CETTE LIGNE ICI :
 include(__DIR__ . '/../config/configuration.php'); 
 
 try {

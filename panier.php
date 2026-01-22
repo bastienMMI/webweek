@@ -52,8 +52,19 @@ if (isset($_GET['remove'])) {
                     </table>
                 <div class="panier-footer" style="margin-top: 20px; text-align: right;">
                     <h3>Total : <?= number_format($total_general, 2) ?> €</h3>
-                    <form action="scripts/valider_panier.php" method="POST" style="margin-top: 15px;">
+                    <form action="scripts/valider_panier.php" method="POST">
+                        <?php if (isset($_SESSION['user_id'])): ?>
                         <button type="submit" class="login-button">Confirmer et commander</button>
+                        <?php else: ?>
+            <div class="connexion_message">
+                <p>
+                    Veuillez vous connecter pour soutenir notre refuge
+                </p>
+                <a href="connexion.php" class="valider-btn" style="text-decoration: none; display: inline-block;">
+                    Se connecter
+                </a>
+            </div>
+          <?php endif; ?>
                     </form>
                 </div>
             <?php endif; ?>
@@ -61,3 +72,5 @@ if (isset($_GET['remove'])) {
         <?php include('header et footer/footer.php'); ?>
     </body>
 </html>
+          
+

@@ -70,8 +70,11 @@
         </div>
 
         <div class="contact-form">
-               <h3>Formulaire</h3>
-                <form>
+               <h3>Formulaire de Contact</h3>
+                <div id="confirmation-message" style="display:none; background: #d4edda; color: #155724; padding: 15px; border-radius: 5px; margin-bottom: 20px; font-weight: bold; text-align: center;">
+                    Votre demande a bien été envoyée !
+                </div>
+                <form id="monFormulaireContact">
                     <div class="form-row">
                         <div class="input-group-index">
                             <label>Nom</label>
@@ -83,8 +86,8 @@
                         </div>
                     </div>
                     <div class="input-group-index">
-                        <label>Téléphone</label>
-                        <input type="tel">
+                        <label for="tel">Téléphone</label>
+                        <input type="tel" id="tel" />
                     </div>
                     <div class="input-group-index">
                         <label>Objet</label>
@@ -97,7 +100,14 @@
                     <button type="submit" class="btn-submit">Envoyer</button>
                 </form>
             </div>
-    </div>
+        <script>
+            document.getElementById('monFormulaireContact').addEventListener('submit', function(e) {
+                e.preventDefault();
+                this.style.display = 'none';
+                document.getElementById('confirmation-message').style.display = 'block'; 
+        });
+        </script>
+        </div>
 </section>
         </section>
         <div class="bouton_fixe">
