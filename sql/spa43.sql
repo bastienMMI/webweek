@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Hôte : 127.0.0.1
--- Généré le : dim. 18 jan. 2026 à 17:04
--- Version du serveur : 10.4.32-MariaDB
--- Version de PHP : 8.2.12
+-- Hôte : localhost
+-- Généré le : jeu. 22 jan. 2026 à 15:59
+-- Version du serveur : 10.4.28-MariaDB
+-- Version de PHP : 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -20,22 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Base de données : `spa43`
 --
-
--- --------------------------------------------------------
-
---
--- Structure de la table `adoption`
---
-
-CREATE TABLE `adoption` (
-  `id_adoption` int(11) NOT NULL,
-  `id_animal` int(11) NOT NULL,
-  `id_utilisateur` int(11) NOT NULL,
-  `date_adoption` date NOT NULL,
-  `statut` enum('en_cours','validee','annulee') DEFAULT 'en_cours',
-  `commentaire` text DEFAULT NULL,
-  `date_creation` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -63,7 +47,6 @@ CREATE TABLE `animal` (
 
 INSERT INTO `animal` (`id_animal`, `nom`, `espece`, `age`, `sexe`, `description`, `photo`, `statut`, `date_arrivee`, `date_ajout`, `date_modification`) VALUES
 (1, 'Gire', 'chat', 2, 'masculin', 'Chat sociable et affectueux, idéal en appartement.', 'cookie.webp', 'disponible', '2025-12-15', '2026-01-18 13:05:16', '2026-01-18 13:05:16'),
-(2, 'Backshoteur', 'chien', 4, 'masculin', 'Chien énergique qui adore les longues promenades.', 'dog1.webp', 'disponible', '2025-11-20', '2026-01-18 13:05:16', '2026-01-18 13:05:16'),
 (3, 'Grimbert', 'chat', 1, 'masculin', 'Jeune chat joueur et très curieux.', 'roco.webp', 'disponible', '2026-01-05', '2026-01-18 13:05:16', '2026-01-18 13:05:16'),
 (4, 'Belledent-Peyre', 'chat', 3, 'feminin', 'Chatte calme et indépendante.', 'felix.webp', 'disponible', '2025-10-10', '2026-01-18 13:05:16', '2026-01-18 13:05:16'),
 (5, 'Mitraillette', 'chat', 5, 'feminin', 'Chatte douce qui aime les câlins.', 'garfield.webp', 'disponible', '2025-09-22', '2026-01-18 13:05:16', '2026-01-18 13:05:16'),
@@ -209,15 +192,6 @@ INSERT INTO `utilisateur` (`id_utilisateur`, `nom`, `prenom`, `email`, `telephon
 --
 
 --
--- Index pour la table `adoption`
---
-ALTER TABLE `adoption`
-  ADD PRIMARY KEY (`id_adoption`),
-  ADD KEY `id_animal` (`id_animal`),
-  ADD KEY `id_utilisateur` (`id_utilisateur`),
-  ADD KEY `idx_statut` (`statut`);
-
---
 -- Index pour la table `animal`
 --
 ALTER TABLE `animal`
@@ -279,12 +253,6 @@ ALTER TABLE `utilisateur`
 --
 
 --
--- AUTO_INCREMENT pour la table `adoption`
---
-ALTER TABLE `adoption`
-  MODIFY `id_adoption` int(11) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT pour la table `animal`
 --
 ALTER TABLE `animal`
@@ -329,13 +297,6 @@ ALTER TABLE `utilisateur`
 --
 -- Contraintes pour les tables déchargées
 --
-
---
--- Contraintes pour la table `adoption`
---
-ALTER TABLE `adoption`
-  ADD CONSTRAINT `adoption_ibfk_1` FOREIGN KEY (`id_animal`) REFERENCES `animal` (`id_animal`) ON DELETE CASCADE,
-  ADD CONSTRAINT `adoption_ibfk_2` FOREIGN KEY (`id_utilisateur`) REFERENCES `utilisateur` (`id_utilisateur`) ON DELETE CASCADE;
 
 --
 -- Contraintes pour la table `commande`

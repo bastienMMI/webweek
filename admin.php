@@ -33,7 +33,7 @@ $dons = $connection->query("SELECT * FROM don ORDER BY date_don DESC")->fetchAll
                 <?php foreach ($animaux as $a): ?>
                     <div class="animal-row">
                         <div class="item-flex">
-                            <img src="images/animaux/<?= $a['photo'] ?>" class="animal-thumb">
+                            <img src="images/animaux/<?= $a['photo'] ?>" alt="Photo de <?= htmlspecialchars($a['nom']) ?>" class="animal-thumb">
                             <div class="item-details">
                                 <span class="item-name"><?= htmlspecialchars($a['nom']) ?></span>
                                 <span class="item-subtext"><?= $a['espece'] ?></span>
