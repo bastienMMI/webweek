@@ -1,22 +1,28 @@
 <?php
 session_start();
-include('connection.php');
+require_once(__DIR__ . '/connection.php');
+require_once(__DIR__ . '/../classes/animal.php');
 
-if ($_SESSION['role'] === 'admin' && isset($_GET['id'])) {
-    $id = $_GET['id'];
-    
-    // 1. Trouver le nom de la photo
-    $stmt = $connection->prepare("SELECT photo FROM animal WHERE id_animal = ?");
-    $stmt->execute([$id]);
-    $res = $stmt->fetch();
-
-    // 2. Supprimer l'image du dossier
-    if ($res) {
-        unlink("../images/animaux/" . $res['photo']);
-    }
-
-    // 3. Supprimer de la BDD
-    $del = $connection->prepare("DELETE FROM animal WHERE id_animal = ?");
-    $del->execute([$id]);
+if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
+    header("Location: ../connexion.php");
+    exit();
 }
-header("Location: ../admin.php");
+
+$id = (int)($_GET['id'] ?? 0);
+
+if ($id > 0) {
+    $animalManager = new AnimalManager($connection);
+
+    // La suppression retourne le nom de la photo, pour pouvoir la retirer du disque
+    $photo = $animalManager->supprimer($id);
+
+    if ($photo) {
+        $chemin = dirname(__DIR__) . "/images/animaux/" . basename($photo);
+        if (is_file($chemin)) {
+            @unlink($chemin);
+        }
+    }
+}
+
+header("Location: ../admin.php?msg=supprime");
+exit();
