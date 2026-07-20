@@ -31,23 +31,11 @@ avec API internes, AJAX, responsive, accessibilité, et refonte graphique.
 
 ## Installation locale (XAMPP)
 
-1. Copier le dossier dans `C:\xampp\htdocs\spa-haute-loire`.
-2. Dupliquer `config/configuration.exemple.php` en
-   `config/configuration.php` et renseigner vos identifiants (valeurs
-   XAMPP par défaut déjà en place).
-3. Démarrer **Apache** et **MySQL** dans XAMPP.
+1. Copier le dossier dans htdocs
 4. Dans phpMyAdmin, créer une base `spa43` (interclassement `utf8mb4`),
-   puis importer dans l'ordre :
-   - `sql/spa43.sql`
-   - `sql/spa43_2.sql`
-   - `sql/spa43_3.sql`
-5. Ouvrir `http://localhost/spa-haute-loire/index.php`.
+   puis importer le fichier sql :
+   - `sql/spa43(1).sql`
+5. Ouvrir le lien correspondant
 
 Pour vous donner les droits admin :
 UPDATE utilisateur SET role='admin' WHERE email='votre@email.fr';
-
-
-## Base de données (5 tables métier + boutique)
-
-`utilisateur`, `animal`, `reservation`, `don`, `message_contact`,
-`produit`, `reservation_produit`.
