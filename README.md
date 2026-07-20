@@ -1,4 +1,4 @@
-# SPA de la Haute-Loire — Refonte technique (SAE301, rattrapage)
+# SPA de la Haute-Loire — Refonte technique 
 
 Site du refuge de la SPA de la Haute-Loire (Polignac), refondu dans le
 cadre de la SAE301 : suppression de la vente en ligne, passage en POO
@@ -40,17 +40,12 @@ avec API internes, AJAX, responsive, accessibilité, et refonte graphique.
    puis importer dans l'ordre :
    - `sql/spa43.sql`
    - `sql/spa43_2.sql`
-   - `sql/ajout_boutique_reservation.sql`
+   - `sql/spa43_3.sql`
 5. Ouvrir `http://localhost/spa-haute-loire/index.php`.
 
 Pour vous donner les droits admin :
-```sql
 UPDATE utilisateur SET role='admin' WHERE email='votre@email.fr';
-```
 
-> Les photos d'animaux ne sont pas toutes dans le dépôt (une seule y a été
-> commitée par le groupe précédent). Ajoutez vos images dans
-> `images/animaux/` — les noms de fichiers sont ceux de la colonne `photo`.
 
 ## Base de données (5 tables métier + boutique)
 
