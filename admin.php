@@ -5,21 +5,28 @@ include('scripts/connection.php');
 include('classes/animal.php');
 include('classes/reservation.php');
 include('classes/contact.php');
+include('classes/produit.php');
+include('classes/reservation_produit.php');
 
 if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
     header("Location: connexion.php");
     exit();
 }
 
-$animalManager      = new AnimalManager($connection);
-$reservationManager = new ReservationManager($connection);
-$messageManager     = new MessageContactManager($connection);
+$animalManager       = new AnimalManager($connection);
+$reservationManager  = new ReservationManager($connection);
+$messageManager      = new MessageContactManager($connection);
+$produitManager      = new ProduitManager($connection);
+$resaProduitManager  = new ReservationProduitManager($connection);
 
-$animaux      = $animalManager->getAllAnimaux();
-$stats        = $animalManager->statistiques();
-$reservations = $reservationManager->getAll();
-$messages     = $messageManager->getAll();
-$non_traites  = $messageManager->compterNonTraites();
+$animaux        = $animalManager->getAllAnimaux();
+$stats          = $animalManager->statistiques();
+$reservations   = $reservationManager->getAll();
+$messages       = $messageManager->getAll();
+$non_traites    = $messageManager->compterNonTraites();
+$produits       = $produitManager->getAll();
+$resas_boutique = $resaProduitManager->getAll();
+$resas_a_preparer = $resaProduitManager->compterEnAttente();
 
 $dons = $connection->query("SELECT * FROM don ORDER BY date_don DESC")->fetchAll(PDO::FETCH_ASSOC);
 
@@ -29,6 +36,10 @@ $messages_retour = [
     'supprime'      => "L'animal a bien été supprimé.",
     'resa_traitee'  => "La réservation a bien été mise à jour.",
     'msg_traite'    => "Le message a bien été mis à jour.",
+    'produit_ajoute'   => "Le produit a bien été ajouté à la boutique.",
+    'produit_modifie'  => "Le produit a bien été mis à jour.",
+    'produit_supprime' => "Le produit a bien été retiré de la boutique.",
+    'resa_boutique'    => "La réservation boutique a bien été mise à jour.",
 ];
 $msg = $_GET['msg'] ?? null;
 
@@ -58,6 +69,7 @@ $page_description = "Espace d'administration du refuge de la SPA de la Haute-Loi
         <div class="stat-card"><span class="stat-nombre"><?= $stats['reserve'] ?></span> réservés</div>
         <div class="stat-card"><span class="stat-nombre"><?= $stats['adopte'] ?></span> adoptés</div>
         <div class="stat-card"><span class="stat-nombre"><?= $non_traites ?></span> messages en attente</div>
+        <div class="stat-card"><span class="stat-nombre"><?= $resas_a_preparer ?></span> réservations boutique à préparer</div>
     </section>
 
     <div class="admin-wrapper">
@@ -150,6 +162,107 @@ $page_description = "Espace d'administration du refuge de la SPA de la Haute-Loi
                                     </form>
                                 </div>
                             <?php endif; ?>
+                        </div>
+                    <?php endforeach; ?>
+                <?php endif; ?>
+            </div>
+        </section>
+
+        <!-- ---------------- Boutique : réservations ---------------- -->
+        <section class="form-section">
+            <h2>Réservations boutique<?= $resas_a_preparer > 0 ? " ($resas_a_preparer à préparer)" : "" ?></h2>
+
+            <div class="admin-table">
+                <?php if (empty($resas_boutique)): ?>
+                    <p class="empty-msg">Aucune réservation boutique pour le moment.</p>
+                <?php else: ?>
+                    <?php foreach ($resas_boutique as $rb): ?>
+                        <div class="animal-row resa-row">
+                            <div class="item-details">
+                                <span class="item-name">
+                                    <?= htmlspecialchars($rb['nom_produit']) ?> ×<?= (int)$rb['quantite'] ?>
+                                    <span class="status-badge statut-<?= htmlspecialchars($rb['statut']) ?>">
+                                        <?= htmlspecialchars(ReservationProduitManager::libelleStatut($rb['statut'])) ?>
+                                    </span>
+                                </span>
+                                <span class="item-subtext">
+                                    <?= number_format($rb['prix'] * $rb['quantite'], 2, ',', ' ') ?> € à régler au retrait ·
+                                    Réservé par <?= htmlspecialchars($rb['user_prenom'] . ' ' . $rb['user_nom']) ?>
+                                    (<?= htmlspecialchars($rb['email']) ?><?= $rb['telephone'] ? ' · ' . htmlspecialchars($rb['telephone']) : '' ?>)
+                                    le <?= date('d/m/Y', strtotime($rb['date_reservation'])) ?>
+                                </span>
+                            </div>
+
+                            <?php if (in_array($rb['statut'], ['en_attente', 'prete'], true)): ?>
+                                <div class="action-group">
+                                    <?php if ($rb['statut'] === 'en_attente'): ?>
+                                        <form action="scripts/traiter_reservation_produit.php" method="POST" class="inline-form">
+                                            <input type="hidden" name="id_reservation" value="<?= (int)$rb['id_reservation_produit'] ?>">
+                                            <input type="hidden" name="statut" value="prete">
+                                            <button type="submit" class="edit-btn">Marquer prête</button>
+                                        </form>
+                                    <?php else: ?>
+                                        <form action="scripts/traiter_reservation_produit.php" method="POST" class="inline-form">
+                                            <input type="hidden" name="id_reservation" value="<?= (int)$rb['id_reservation_produit'] ?>">
+                                            <input type="hidden" name="statut" value="retiree">
+                                            <button type="submit" class="edit-btn">Retrait effectué</button>
+                                        </form>
+                                    <?php endif; ?>
+
+                                    <form action="scripts/traiter_reservation_produit.php" method="POST" class="inline-form">
+                                        <input type="hidden" name="id_reservation" value="<?= (int)$rb['id_reservation_produit'] ?>">
+                                        <input type="hidden" name="statut" value="annulee">
+                                        <button type="submit" class="delete-btn"
+                                                onclick="return confirm('Annuler cette réservation ? Le stock sera restitué.');">Annuler</button>
+                                    </form>
+                                </div>
+                            <?php endif; ?>
+                        </div>
+                    <?php endforeach; ?>
+                <?php endif; ?>
+            </div>
+        </section>
+
+        <!-- ---------------- Boutique : catalogue ---------------- -->
+        <section class="form-section">
+            <div class="admin-titre">
+                <h2>Les produits de la boutique</h2>
+                <a href="ajouter_produit.php" class="login-button">+ Ajouter un produit</a>
+            </div>
+
+            <div class="admin-table">
+                <?php if (empty($produits)): ?>
+                    <p class="empty-msg">Aucun produit dans la boutique.</p>
+                <?php else: ?>
+                    <?php foreach ($produits as $p): ?>
+                        <div class="animal-row <?= $p['actif'] ? '' : 'message-traite' ?>">
+                            <div class="item-flex">
+                                <?php if (!empty($p['photo'])): ?>
+                                    <img src="images/<?= htmlspecialchars($p['photo']) ?>"
+                                         alt="<?= htmlspecialchars($p['nom_produit']) ?>" class="animal-thumb" loading="lazy">
+                                <?php endif; ?>
+                                <div class="item-details">
+                                    <span class="item-name">
+                                        <?= htmlspecialchars($p['nom_produit']) ?>
+                                        <?php if (!$p['actif']): ?>
+                                            <span class="status-badge statut-annulee">Retiré</span>
+                                        <?php elseif ((int)$p['stock'] === 0): ?>
+                                            <span class="status-badge statut-en_attente">Épuisé</span>
+                                        <?php endif; ?>
+                                    </span>
+                                    <span class="item-subtext">
+                                        <?= htmlspecialchars($p['prix_lisible']) ?> ·
+                                        Stock : <?= (int)$p['stock'] ?>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="action-group">
+                                <a href="modifier_produit.php?id=<?= (int)$p['id_produit'] ?>" class="edit-btn">Modifier</a>
+                                <?php if ($p['actif']): ?>
+                                    <a href="scripts/supprimer_produit.php?id=<?= (int)$p['id_produit'] ?>" class="delete-btn"
+                                       onclick="return confirm('Retirer <?= htmlspecialchars(addslashes($p['nom_produit'])) ?> de la boutique ?');">Retirer</a>
+                                <?php endif; ?>
+                            </div>
                         </div>
                     <?php endforeach; ?>
                 <?php endif; ?>

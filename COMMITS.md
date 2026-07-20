@@ -1,78 +1,51 @@
 # Historique de commits à rejouer
 
-Ces commandes reconstituent un historique lisible, un commit par ticket Jira.
-Exécutez-les depuis la racine du dépôt, dans l'ordre.
+Ces commandes reconstituent un historique lisible, un commit par lot cohérent.
+Exécutez-les depuis la racine du dépôt, dans l'ordre. Adaptez `SCRUM-xx` aux
+clés réelles de vos tickets Jira.
 
-> Remplacez `SCRUM` par la clé réelle de vos tickets si elle diffère.
+> Astuce : étalez si possible les commits sur plusieurs dates (les encadrants
+> regardent l'historique Git comme preuve du suivi de projet).
 
 ```bash
-git init
-git branch -M main
-
-# --- Socle ---
+# --- Sprint 1 : socle, migration, retrait e-commerce (déjà fait) ---
 git add .gitignore README.md config/configuration.exemple.php
-git commit -m "chore : initialiser le depot (README, gitignore, config d exemple)"
+git commit -m "chore : README, gitignore, config d exemple"
 
-git add sql/migration_cible.sql
-git commit -m "feat(SCRUM-2) : migrer la base vers le schema cible (5 tables)"
+git add sql/spa43_2.sql
+git commit -m "feat(SCRUM-2) : migration cible (retrait e-commerce, enrichissement animaux, reservation, contact)"
 
-git add -A
-git commit -m "feat(SCRUM-1) : retirer le module e-commerce (boutique, panier, commandes)"
+git add classes/ api/ scripts/ mon-compte.php admin.php adopter.php js/filtre_ajax.js js/contact.js
+git commit -m "feat(SCRUM-7) : back-end POO + API internes JSON"
 
-# --- Corrections ---
-git add classes/don.php scripts/traiter_don.php don.php
-git commit -m "fix(SCRUM-3) : fiabiliser le don (statut ENUM valide, validation du montant)"
-
-git add scripts/ajouter_animal.php scripts/update_animal.php ajouter_animal.php modifier_animaux.php
-git commit -m "fix(SCRUM-4) : aligner les formulaires sur les ENUM de la base"
-
-git add scripts/update_animal.php
-git commit -m "fix(SCRUM-5) : enregistrer tous les champs a la mise a jour d un animal"
-
-# --- Métier et API ---
-git add classes/animal.php api/get_animaux.php api/get_animal.php
-git commit -m "refactor(SCRUM-7) : centraliser la gestion des animaux en POO et exposer une API JSON"
-
-git add ajouter_animal.php modifier_animaux.php admin.php scripts/supprimer_animal.php
-git commit -m "feat(SCRUM-6) : CRUD animal complet avec suivi sanitaire et age calcule"
-
-git add classes/contact.php api/contact.php js/contact.js index.php
-git commit -m "feat(SCRUM-8) : rendre le formulaire de contact fonctionnel (API + back-office)"
-
-# --- Pré-réservation ---
-git add classes/reservation.php api/reserver.php
-git commit -m "feat(SCRUM-9) : pre-reservation gratuite d un animal disponible"
-
-git add admin.php scripts/traiter_reservation.php
-git commit -m "feat(SCRUM-10) : gerer les reservations cote administrateur"
-
-git add mon-compte.php scripts/annuler_reservation.php
-git commit -m "feat(SCRUM-11) : suivre ses pre-reservations dans l espace personnel"
-
-# --- Parcours visiteur ---
 git add adopter.php js/filtre_ajax.js
-git commit -m "feat(SCRUM-12) : filtrer les animaux en AJAX via l API interne"
+git commit -m "feat(SCRUM-12) : filtrage des animaux en AJAX"
 
 git add js/filtre_ajax.js css/style.css
-git commit -m "feat(SCRUM-13) : afficher la fiche animal detaillee en AJAX"
+git commit -m "feat(SCRUM-13) : fiche animal detaillee en AJAX + pre-reservation"
 
-git add css/style.css
-git commit -m "feat(SCRUM-14) : rendre l ensemble du site responsive"
+# --- Sprint 2 : retour boutique + refonte graphique ---
+git add sql/ajout_boutique_reservation.sql sql/installation_complete.sql
+git commit -m "feat(SCRUM-19) : schema boutique en reservation gratuite (produit + reservation_produit)"
 
-# --- Conformité ---
-git add -A
-git commit -m "feat(SCRUM-15) : accessibilite (alt, titres, ARIA, focus, navigation clavier)"
+git add classes/produit.php classes/reservation_produit.php api/get_produits.php api/reserver_produit.php
+git commit -m "feat(SCRUM-20) : boutique en POO + API (catalogue et reservation d articles)"
 
-git add mentions-legales.php confidentialite.php accessibilite.php "header et footer/footer.php"
-git commit -m "feat(SCRUM-16) : publier les mentions legales, le RGPD et l accessibilite"
+git add boutique.php js/boutique_ajax.js
+git commit -m "feat(SCRUM-21) : page boutique avec reservation d articles en AJAX (retrait au refuge)"
 
-git add "header et footer/head.php"
-git commit -m "feat(SCRUM-17) : titre et meta-description propres a chaque page"
+git add ajouter_produit.php modifier_produit.php scripts/ajout_produit.php scripts/update_produit.php scripts/supprimer_produit.php
+git commit -m "feat(SCRUM-22) : back-office boutique (CRUD produits)"
 
-git add images/
-git commit -m "feat(SCRUM-18) : eco-conception (images compressees, chargement paresseux)"
+git add admin.php scripts/traiter_reservation_produit.php mon-compte.php scripts/annuler_reservation_produit.php
+git commit -m "feat(SCRUM-23) : suivi des reservations boutique (admin + espace personnel)"
+
+git add "header et footer/header.php"
+git commit -m "feat(SCRUM-24) : lien Boutique dans la navigation"
+
+git add css/style.css "header et footer/head.php" js/animations.js index.php aider.php
+git commit -m "feat(SCRUM-25) : refonte graphique (degrades, typographie Fraunces, micro-interactions) en conservant la palette"
 
 # --- Publication ---
-git remote add origin https://github.com/<votre-compte>/<votre-depot>.git
-git push -u origin main
+git push origin main
 ```

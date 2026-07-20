@@ -3,6 +3,7 @@ session_start();
 include('config/configuration.php');
 include('scripts/connection.php');
 include('classes/reservation.php');
+include('classes/reservation_produit.php');
 
 // Sécurité : si l'utilisateur n'est pas connecté, on le renvoie à la page de connexion
 if (!isset($_SESSION['user_id'])) {
@@ -20,6 +21,10 @@ $user = $stmt_user->fetch(PDO::FETCH_ASSOC);
 // Pré-réservations de l'utilisateur
 $reservationManager = new ReservationManager($connection);
 $reservations = $reservationManager->getByUtilisateur($id_user);
+
+// Réservations boutique de l'utilisateur
+$resaProduitManager = new ReservationProduitManager($connection);
+$resas_boutique = $resaProduitManager->getByUtilisateur($id_user);
 
 // Dons de l'utilisateur
 $stmt_dons = $connection->prepare("SELECT montant, date_don FROM don WHERE id_utilisateur = ? ORDER BY date_don DESC");
@@ -85,6 +90,52 @@ $page_description = "Retrouvez vos pre-reservations d'animaux et vos dons au ref
                                     <button type="submit" class="btn-cancel"
                                             onclick="return confirm('Annuler cette pré-réservation ?');">
                                         Annuler ma demande
+                                    </button>
+                                </form>
+                            <?php endif; ?>
+                        </div>
+                    <?php endforeach; ?>
+                <?php endif; ?>
+            </section>
+
+            <section class="reservation-history">
+                <h2>Mes réservations boutique</h2>
+
+                <?php if (empty($resas_boutique)): ?>
+                    <p class="empty-msg">Vous n'avez pas encore réservé d'article.</p>
+                    <a href="boutique.php" class="btn-submit">Découvrir la boutique solidaire</a>
+                <?php else: ?>
+                    <?php foreach ($resas_boutique as $rb): ?>
+                        <div class="card-commande">
+                            <div class="card-header">
+                                <span>
+                                    <strong><?= htmlspecialchars($rb['nom_produit']) ?></strong>
+                                    ×<?= (int)$rb['quantite'] ?>
+                                    — réservé le <?= date('d/m/Y', strtotime($rb['date_reservation'])) ?>
+                                </span>
+                                <span class="status-badge statut-<?= htmlspecialchars($rb['statut']) ?>">
+                                    <?= htmlspecialchars(ReservationProduitManager::libelleStatut($rb['statut'])) ?>
+                                </span>
+                            </div>
+
+                            <div class="card-body">
+                                <?php if (!empty($rb['photo'])): ?>
+                                    <img src="images/<?= htmlspecialchars($rb['photo']) ?>"
+                                         alt="<?= htmlspecialchars($rb['nom_produit']) ?>"
+                                         class="animal-thumb" loading="lazy">
+                                <?php endif; ?>
+                                <p class="resa-message">
+                                    <?= number_format($rb['prix'] * $rb['quantite'], 2, ',', ' ') ?> €
+                                    à régler au refuge lors du retrait.
+                                </p>
+                            </div>
+
+                            <?php if (in_array($rb['statut'], ['en_attente', 'prete'], true)): ?>
+                                <form action="scripts/annuler_reservation_produit.php" method="POST" class="form-actions">
+                                    <input type="hidden" name="id_reservation" value="<?= (int)$rb['id_reservation_produit'] ?>">
+                                    <button type="submit" class="btn-cancel"
+                                            onclick="return confirm('Annuler cette réservation ?');">
+                                        Annuler ma réservation
                                     </button>
                                 </form>
                             <?php endif; ?>

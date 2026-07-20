@@ -17,9 +17,13 @@ $page_description = "Le refuge de la SPA de la Haute-Loire accueille chiens et c
                 <source src="vidéo/videobanieres.webm" type="video/webm">
             </video>
             <div class="hero-content">
-                <h1>La SPA de la Haute-Loire vous souhaite la bienvenue !</h1>
-                <h3>Nous vous accueillons du Lundi au Samedi, de 13h30 à 17h30.</h3>
-                <a href="adopter.php" class="btn-hero">J'adopte</a>
+                <p class="eyebrow"><span class="patte" aria-hidden="true"></span>Refuge de Polignac · Depuis 1983</p>
+                <h1>La SPA de la Haute-Loire vous souhaite la bienvenue</h1>
+                <p class="hero-horaires">Ouvert du lundi au samedi, de 13h30 à 17h30.</p>
+                <div class="hero-actions">
+                    <a href="adopter.php" class="btn-hero">J'adopte</a>
+                    <a href="boutique.php" class="btn-hero-secondaire">La boutique solidaire</a>
+                </div>
             </div>
         </section>
 
@@ -40,13 +44,13 @@ $page_description = "Le refuge de la SPA de la Haute-Loire accueille chiens et c
             <div class="carousel-nav"></div>
         </div>
 
-        <div class="carousel-text">
+        <div class="carousel-text reveal">
             <h2>Leur futur commence par votre visite : découvrez-les tous.</h2>
         </div>
         
     </div>
 </section>
-        <section class="section-about">
+        <section class="section-about reveal">
             <div class="container">
                 <h3>A Propos de nous</h3>
                 <p>La SPA a vu le jour en 1983 grâce à une poignée d'amoureux des animaux. Pendant près de 10 ans, ses
@@ -61,7 +65,7 @@ $page_description = "Le refuge de la SPA de la Haute-Loire accueille chiens et c
         </section>
 
 
-<section id="contact" class="section-contact">
+<section id="contact" class="section-contact reveal">
     <div class="container">
         <div class="contact-flex-container">
             <div class="contact-info">
@@ -108,7 +112,6 @@ $page_description = "Le refuge de la SPA de la Haute-Loire accueille chiens et c
             </div>
         </div>
 </section>
-        </section>
         <div class="bouton_fixe">
         <button id="scrollToTop" class="scroll-to-top">↑</button>
         <a href="don.php" id="bouton_don">Faire un don</a>
