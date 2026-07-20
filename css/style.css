@@ -2073,3 +2073,684 @@ footer {
     font-size: 0.75rem;
   }
 }
+/* ============================================================
+   REFONTE SAE301 — composants ajoutés
+   Pré-réservation, fiche animal, messages, pages légales,
+   accessibilité et responsive.
+   ============================================================ */
+
+/* --- Accessibilité : contenu réservé aux lecteurs d'écran --- */
+.visually-hidden {
+    position: absolute;
+    width: 1px; height: 1px;
+    padding: 0; margin: -1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* --- Accessibilité : focus toujours visible au clavier --- */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+[tabindex]:focus-visible {
+    outline: 3px solid #7a5c2e;
+    outline-offset: 2px;
+}
+
+/* --- Messages de retour --- */
+.message-succes,
+.message-erreur,
+.message-info {
+    padding: 12px 16px;
+    border-radius: 6px;
+    margin: 15px 0;
+    font-weight: 600;
+    border-left: 4px solid;
+}
+.message-succes { background: #e8f5e9; color: #1b5e20; border-color: #2e7d32; }
+.message-erreur { background: #fdecea; color: #8b1e14; border-color: #c0392b; }
+.message-info   { background: #eef4fb; color: #1b3a5c; border-color: #34699c; }
+.message-erreur ul { margin: 0; padding-left: 20px; }
+.message-erreur li { font-weight: 400; }
+
+/* --- Page « Adopter » --- */
+.adoption-intro {
+    max-width: 800px;
+    margin: 30px auto 10px;
+    padding: 0 20px;
+    text-align: center;
+}
+.adoption-intro h1 { margin-bottom: 10px; }
+
+.resultat-compteur {
+    text-align: center;
+    font-weight: 600;
+    color: #5a5a5a;
+    margin: 10px 0 20px;
+}
+
+.filter-cases {
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 10px 14px;
+}
+.filter-cases legend { font-weight: 600; padding: 0 6px; }
+
+.case-a-cocher {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-right: 14px;
+    cursor: pointer;
+    font-weight: 400;
+}
+.case-a-cocher input { width: auto; margin: 0; }
+
+.filter-submit { display: flex; align-items: flex-end; }
+
+/* --- Cartes animaux --- */
+.animal-card-body { padding: 12px; }
+.animal-meta { color: #5a5a5a; margin: 6px 0; }
+
+.animal-badges {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    padding: 0;
+    margin: 10px 0;
+}
+.badge {
+    font-size: 0.78rem;
+    padding: 3px 9px;
+    border-radius: 12px;
+    font-weight: 600;
+}
+.badge-ok     { background: #e8f5e9; color: #1b5e20; }
+.badge-statut { background: #fff3e0; color: #8a5200; }
+
+.btn-detail {
+    width: 100%;
+    margin-top: 8px;
+    padding: 9px 12px;
+    background: #ab8a60;
+    color: #fff;
+    border: none;
+    border-radius: 20px;
+    font-weight: 700;
+    cursor: pointer;
+}
+.btn-detail:hover { background: #8f7049; }
+.animal-card-indisponible { opacity: .72; }
+
+.empty-msg { grid-column: 1 / -1; text-align: center; color: #666; padding: 30px; }
+
+/* --- Fiche animal (modale) --- */
+.modale {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, .6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    z-index: 1000;
+}
+.modale[hidden] { display: none; }
+body.modale-ouverte { overflow: hidden; }
+
+.modale-contenu {
+    background: #fff;
+    border-radius: 10px;
+    max-width: 780px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    padding: 26px;
+    position: relative;
+}
+.modale-fermer {
+    position: absolute;
+    top: 10px; right: 14px;
+    background: none;
+    border: none;
+    font-size: 2rem;
+    line-height: 1;
+    cursor: pointer;
+    color: #555;
+}
+.modale-fermer:hover { color: #000; }
+
+.fiche-grille {
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    gap: 22px;
+    margin: 18px 0;
+}
+.fiche-grille img { width: 100%; border-radius: 8px; object-fit: cover; }
+
+.fiche-infos { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 16px; margin: 0; }
+.fiche-infos div { display: flex; justify-content: space-between; border-bottom: 1px solid #eee; padding-bottom: 4px; }
+.fiche-infos dt { font-weight: 700; margin: 0; }
+.fiche-infos dd { margin: 0; color: #444; }
+.fiche-description { margin-top: 14px; line-height: 1.6; }
+
+.form-reservation { border-top: 1px solid #eee; padding-top: 16px; }
+.form-reservation label { display: block; font-weight: 600; margin-bottom: 6px; }
+.form-reservation textarea { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px; font-family: inherit; }
+.resa-aide { font-size: .85rem; color: #666; margin-top: 8px; }
+.chargement { text-align: center; padding: 30px; color: #666; }
+
+/* --- Statuts (badges) --- */
+.status-badge {
+    display: inline-block;
+    font-size: .78rem;
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-weight: 600;
+    margin-left: 8px;
+}
+.statut-en_attente  { background: #fff3e0; color: #8a5200; }
+.statut-confirmee   { background: #e3f2fd; color: #14507d; }
+.statut-annulee     { background: #fdecea; color: #8b1e14; }
+.statut-concretisee { background: #e8f5e9; color: #1b5e20; }
+
+/* --- Back-office --- */
+.admin-stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    justify-content: center;
+    margin: 22px auto;
+    padding: 0 20px;
+}
+.stat-card {
+    background: #fff;
+    border: 1px solid #e6e6e6;
+    border-radius: 8px;
+    padding: 14px 22px;
+    text-align: center;
+    min-width: 130px;
+    color: #5a5a5a;
+}
+.stat-nombre { display: block; font-size: 1.7rem; font-weight: 700; color: #ab8a60; }
+
+.inline-form { display: inline; }
+.resa-row { align-items: flex-start; }
+.resa-message { font-style: italic; color: #666; }
+.item-message { margin: 8px 0 0; color: #444; line-height: 1.5; }
+.message-traite { opacity: .6; }
+
+/* --- Formulaire de don : rappel des coordonnées --- */
+.recap-donateur {
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin-bottom: 18px;
+}
+.recap-donateur legend { font-weight: 700; padding: 0 6px; }
+.recap-info { font-size: .85rem; color: #666; margin-bottom: 12px; }
+.recap-donateur input[readonly] { background: #f5f5f5; color: #555; cursor: not-allowed; }
+
+/* --- Pages légales --- */
+.page-legale {
+    max-width: 860px;
+    margin: 40px auto 60px;
+    padding: 0 20px;
+    line-height: 1.7;
+}
+.page-legale h1 { margin-bottom: 24px; }
+.page-legale h2 { margin-top: 32px; margin-bottom: 10px; color: #7a5c2e; }
+.page-legale section { margin-bottom: 8px; }
+.page-legale ul { padding-left: 22px; }
+.page-legale li { margin-bottom: 6px; }
+
+.table-donnees { width: 100%; border-collapse: collapse; margin-top: 14px; font-size: .9rem; }
+.table-donnees caption { text-align: left; font-style: italic; color: #666; padding-bottom: 8px; }
+.table-donnees th, .table-donnees td { border: 1px solid #ddd; padding: 9px 11px; text-align: left; vertical-align: top; }
+.table-donnees thead th { background: #f3ede4; }
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+
+@media (max-width: 900px) {
+    .fiche-grille { grid-template-columns: 1fr; }
+    .fiche-grille img { max-height: 300px; }
+}
+
+@media (max-width: 768px) {
+    .filter-form { flex-direction: column; align-items: stretch; gap: 12px; }
+    .filter-group { width: 100%; }
+    .filter-cases { display: flex; flex-direction: column; gap: 8px; }
+    .case-a-cocher { margin-right: 0; }
+
+    .fiche-infos { grid-template-columns: 1fr; }
+    .modale-contenu { padding: 18px; max-height: 94vh; }
+    .modale { padding: 10px; }
+
+    .admin-stats { gap: 10px; }
+    .stat-card { min-width: 105px; padding: 10px 14px; }
+    .stat-nombre { font-size: 1.35rem; }
+
+    /* Les lignes du back-office passent en colonne */
+    .animal-row { flex-direction: column; align-items: flex-start; gap: 10px; }
+    .action-group { width: 100%; display: flex; flex-wrap: wrap; gap: 8px; }
+
+    /* Les tableaux larges défilent au lieu de déborder */
+    .table-donnees { display: block; overflow-x: auto; white-space: nowrap; }
+    .page-legale { padding: 0 16px; }
+}
+
+@media (max-width: 480px) {
+    .adoption-intro { padding: 0 16px; }
+    .animal-badges { gap: 4px; }
+    .badge { font-size: .72rem; padding: 2px 7px; }
+    .stat-card { flex: 1 1 calc(50% - 10px); min-width: 0; }
+}
+
+/* ============================================================
+   FINITIONS ESTHÉTIQUES — reprise propre (même palette)
+   Corrige : bouton blanc sur blanc, cartes admin, contrastes,
+   mise en page du tableau de bord, bannière d'accueil.
+   Ce bloc est en fin de fichier : il a la priorité.
+   ============================================================ */
+
+/* ---- 1. Bannière d'accueil : image de fond au lieu du vide ---- */
+.hero {
+  background-image: linear-gradient(rgba(73, 101, 55, 0.35), rgba(79, 64, 45, 0.45)),
+                    url('../images/carousel_index/Banniere1.webp');
+  background-size: cover;
+  background-position: center;
+}
+
+/* ---- 2. Le bouton « Envoyer / Pré-réserver » ----
+   Avant : transparent + texte blanc => invisible sur fond blanc.
+   Après : fond brun plein, lisible partout. */
+.btn-submit {
+  border: 2px solid var(--brown-light);
+  background: var(--brown-light);
+  color: var(--white);
+  font-size: 17px;
+  padding: 12px 34px;
+  margin: 18px 0 0;
+  cursor: pointer;
+  transition: background .2s, transform .2s;
+}
+.btn-submit:hover {
+  background: #92714a;
+  border-color: #92714a;
+  color: var(--white);
+  transform: translateY(-2px);
+}
+
+/* ---- 3. Tableau de bord admin : une seule colonne large ----
+   Avant : flex row => 4 sections tassées, dons/messages invisibles en bas à droite.
+   Après : sections empilées, pleine largeur, en cartes. */
+.admin-main { max-width: 1100px; margin: 0 auto; padding: 30px 24px 60px; }
+.admin-wrapper { display: block !important; max-width: 100% !important; }
+.admin-wrapper .form-section {
+  width: 100%;
+  background: var(--white);
+  border: 1px solid #e6ded1;
+  border-radius: 12px;
+  padding: 22px 26px;
+  margin-bottom: 26px;
+  box-shadow: 0 2px 8px rgba(79, 64, 45, 0.06);
+}
+.admin-wrapper .form-section h2 {
+  color: var(--brown-text);
+  border-bottom: 2px solid var(--yellow-normal);
+  padding-bottom: 10px;
+  margin: 0 0 16px;
+}
+
+/* ---- 4. Cartes de chiffres : compactes et régulières ---- */
+.admin-stats {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 14px;
+  max-width: 1100px;
+  margin: 24px auto 30px;
+  padding: 0 24px;
+}
+.stat-card {
+  background: var(--white);
+  border: 1px solid #e6ded1;
+  border-radius: 10px;
+  padding: 16px 10px;
+  min-width: 0;
+  color: var(--brown-text);
+  box-shadow: 0 2px 8px rgba(79, 64, 45, 0.06);
+}
+.stat-nombre {
+  display: block;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--green-dark);
+  line-height: 1.1;
+}
+
+/* ---- 5. Lignes de liste (animaux, réservations, messages, dons) ---- */
+.admin-wrapper .animal-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  padding: 12px 4px;
+  border-bottom: 1px solid #efe9df;
+}
+.admin-wrapper .animal-row:last-child { border-bottom: none; }
+.item-details { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+.item-name { font-weight: 700; color: var(--brown-text); }
+.item-subtext { color: #7a6f5d; font-size: .9rem; }
+.item-message {
+  margin: 8px 0 0;
+  padding: 10px 14px;
+  background: var(--bg-yellow-light);
+  border-left: 3px solid var(--brown-light);
+  border-radius: 4px;
+  color: var(--brown-text);
+  line-height: 1.5;
+}
+.animal-thumb { width: 54px; height: 54px; object-fit: cover; border-radius: 8px; flex-shrink: 0; }
+.item-flex { display: flex; align-items: center; gap: 14px; min-width: 0; }
+
+/* ---- 6. Boutons d'action admin ---- */
+.action-group { display: flex; gap: 8px; flex-shrink: 0; align-items: center; }
+.edit-btn, .delete-btn {
+  padding: 7px 14px;
+  border-radius: 6px;
+  border: none;
+  font-weight: 600;
+  font-size: .88rem;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+}
+.edit-btn { background: var(--green-dark); color: var(--white); }
+.edit-btn:hover { background: #3b5230; }
+.delete-btn { background: #f3e2e0; color: var(--red); }
+.delete-btn:hover { background: var(--red); color: var(--white); }
+.inline-form { display: inline; }
+
+/* ---- 7. Titre + bouton « + Ajouter un animal » alignés ---- */
+.admin-titre {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  border-bottom: 2px solid var(--yellow-normal);
+  padding-bottom: 10px;
+  margin-bottom: 16px;
+}
+.admin-titre h2 { border: none !important; padding: 0 !important; margin: 0 !important; }
+.admin-titre .login-button { width: auto; padding: 9px 18px; font-size: .9rem; white-space: nowrap; }
+
+/* ---- 8. Badges de statut : contrastes corrigés ---- */
+.status-badge {
+  display: inline-block;
+  font-size: .75rem;
+  padding: 3px 10px;
+  border-radius: 12px;
+  font-weight: 700;
+  margin-left: 8px;
+  vertical-align: middle;
+}
+.statut-en_attente  { background: #fbe9cf; color: #7a4e00; }
+.statut-confirmee   { background: #d4e6f7; color: #0f4c78; }
+.statut-annulee     { background: #f7dcda; color: #8b1e14; }
+.statut-concretisee { background: #d7edd8; color: #1b5e20; }
+
+/* ---- 9. Fiche animal (modale) ---- */
+.form-reservation .btn-submit { width: 100%; }
+.message-info a { color: var(--green-dark); font-weight: 700; }
+
+/* ---- 10. Responsive admin ---- */
+@media (max-width: 900px) { .admin-stats { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 600px) {
+  .admin-stats { grid-template-columns: repeat(2, 1fr); }
+  .admin-wrapper .animal-row { flex-direction: column; align-items: flex-start; }
+  .action-group { width: 100%; }
+  .item-flex { width: 100%; }
+}
+
+/* ============================================================
+   SYSTÈME VISUEL MODERNE — dégradés visibles, ombres légères
+   Palette d'origine conservée. Ce bloc final a la priorité.
+   ============================================================ */
+
+:root {
+  /* Dégradés dérivés de la palette */
+  --grad-green: linear-gradient(135deg, #567a3f 0%, #3d5730 100%);
+  --grad-brown: linear-gradient(135deg, #b89468 0%, #9a774f 100%);
+  --grad-beige: linear-gradient(160deg, #f3efe4 0%, #e6ddcc 100%);
+  --grad-card:  linear-gradient(160deg, #ffffff 0%, #faf7f0 100%);
+  --grad-green-soft: linear-gradient(135deg, #e9f0e2 0%, #dbe6d0 100%);
+
+  /* Ombres légères, en profondeur */
+  --shadow-xs: 0 1px 3px rgba(79, 64, 45, 0.08);
+  --shadow-sm: 0 3px 10px rgba(79, 64, 45, 0.10);
+  --shadow-md: 0 8px 24px rgba(79, 64, 45, 0.12);
+  --shadow-brown: 0 6px 18px rgba(154, 119, 79, 0.35);
+  --shadow-green: 0 6px 18px rgba(61, 87, 48, 0.30);
+
+  --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+* { transition: color .2s var(--ease), background-color .25s var(--ease),
+                box-shadow .25s var(--ease), transform .2s var(--ease),
+                border-color .2s var(--ease); }
+
+html { scroll-behavior: smooth; }
+
+/* ---------- BANDEAU / HEADER ---------- */
+header, .navbar, nav.navbar, .header {
+  background: var(--grad-green) !important;
+  box-shadow: var(--shadow-sm);
+}
+
+/* ---------- BOUTONS (base moderne) ---------- */
+.btn-hero, .login-button, .btn-submit, .btn-detail,
+.valider-btn, .btn-panier {
+  border-radius: 30px;
+  font-weight: 700;
+  letter-spacing: .2px;
+  cursor: pointer;
+  border: none;
+  position: relative;
+  box-shadow: var(--shadow-brown);
+}
+
+/* Boutons principaux → dégradé brun */
+.btn-hero, .login-button, .btn-detail, .valider-btn, .btn-submit {
+  background: var(--grad-brown);
+  color: #fff;
+}
+.btn-hero:hover, .login-button:hover, .btn-detail:hover,
+.valider-btn:hover, .btn-submit:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 26px rgba(154, 119, 79, 0.45);
+  filter: brightness(1.05);
+  color: #fff;
+}
+.btn-hero:active, .login-button:active, .btn-detail:active,
+.valider-btn:active, .btn-submit:active {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-brown);
+}
+
+/* Bouton hero (page d'accueil) un peu plus grand */
+.btn-hero {
+  display: inline-block;
+  padding: 14px 44px;
+  font-size: 1.05rem;
+  margin-top: 14px;
+}
+
+/* Effet de brillance qui traverse au survol */
+.btn-hero::after, .login-button::after, .btn-detail::after {
+  content: "";
+  position: absolute;
+  top: 0; left: -75%;
+  width: 50%; height: 100%;
+  background: linear-gradient(120deg, transparent, rgba(255,255,255,.35), transparent);
+  transform: skewX(-20deg);
+  transition: left .6s var(--ease);
+}
+.btn-hero:hover::after, .login-button:hover::after, .btn-detail:hover::after {
+  left: 130%;
+}
+
+/* ---------- CARTES ANIMAUX (page Adopter) ---------- */
+.animal-card {
+  background: var(--grad-card);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid rgba(154, 119, 79, 0.10);
+  animation: cardIn .5s var(--ease) both;
+}
+.animal-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-md);
+}
+.animal-card img { transition: transform .4s var(--ease); }
+.animal-card:hover img { transform: scale(1.05); }
+
+/* Apparition en fondu + montée */
+@keyframes cardIn {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.animal-grid .animal-card:nth-child(1) { animation-delay: .02s; }
+.animal-grid .animal-card:nth-child(2) { animation-delay: .06s; }
+.animal-grid .animal-card:nth-child(3) { animation-delay: .10s; }
+.animal-grid .animal-card:nth-child(4) { animation-delay: .14s; }
+.animal-grid .animal-card:nth-child(5) { animation-delay: .18s; }
+.animal-grid .animal-card:nth-child(6) { animation-delay: .22s; }
+
+.badge { box-shadow: var(--shadow-xs); }
+.badge-ok { background: var(--grad-green-soft); color: #1b5e20; }
+
+/* ---------- FILTRES (page Adopter) ---------- */
+.filter-section {
+  background: var(--grad-brown);
+  border-radius: 18px;
+  box-shadow: var(--shadow-md);
+}
+.filter-form select, .filter-form input[type=number] {
+  border-radius: 10px;
+  border: 2px solid transparent;
+  padding: 10px 12px;
+}
+.filter-form select:focus, .filter-form input:focus {
+  border-color: var(--green-dark);
+  box-shadow: 0 0 0 3px rgba(86, 122, 63, 0.2);
+  outline: none;
+}
+
+/* ---------- MODALE FICHE ANIMAL ---------- */
+.modale { backdrop-filter: blur(3px); background: rgba(40, 30, 20, .55); }
+.modale-contenu {
+  border-radius: 18px;
+  box-shadow: var(--shadow-md);
+  animation: modalIn .3s var(--ease) both;
+}
+@keyframes modalIn {
+  from { opacity: 0; transform: translateY(20px) scale(.97); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+.modale-fermer { transition: transform .2s var(--ease), color .2s; }
+.modale-fermer:hover { transform: rotate(90deg); color: var(--red); }
+
+/* ---------- TABLEAU DE BORD ADMIN ---------- */
+.title-section h1 {
+  background: var(--grad-brown);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.stat-card {
+  background: var(--grad-card);
+  border: 1px solid rgba(154, 119, 79, 0.12);
+  box-shadow: var(--shadow-sm);
+}
+.stat-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+.stat-nombre {
+  background: var(--grad-green);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.admin-wrapper .form-section {
+  background: var(--grad-card);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid rgba(154, 119, 79, 0.10);
+}
+.admin-wrapper .form-section:hover { box-shadow: var(--shadow-md); }
+.animal-row:hover { background: rgba(154, 119, 79, 0.05); border-radius: 8px; }
+
+/* Boutons d'action admin modernisés */
+.edit-btn { background: var(--grad-green); box-shadow: var(--shadow-green); }
+.edit-btn:hover { transform: translateY(-2px); filter: brightness(1.08); box-shadow: 0 8px 20px rgba(61,87,48,.4); }
+.delete-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(175,45,45,.35); }
+.login-button.btn-save { background: var(--grad-green); box-shadow: var(--shadow-green); }
+
+/* ---------- FORMULAIRES (don, contact, ajout) ---------- */
+input[type=text], input[type=email], input[type=tel], input[type=number],
+input[type=password], input[type=date], textarea, select {
+  border-radius: 10px;
+  transition: border-color .2s, box-shadow .2s;
+}
+input:focus, textarea:focus, select:focus {
+  border-color: var(--brown-light) !important;
+  box-shadow: 0 0 0 3px rgba(171, 138, 96, 0.18) !important;
+  outline: none;
+}
+.contact-form, .don-card, .admin-edit-container, .account-container,
+.info-utilisateur, .card-commande {
+  border-radius: 16px;
+  box-shadow: var(--shadow-sm);
+}
+
+/* ---------- PAGES LÉGALES + cartes diverses ---------- */
+.page-legale { animation: cardIn .5s var(--ease) both; }
+.table-donnees { border-radius: 12px; overflow: hidden; box-shadow: var(--shadow-xs); }
+.table-donnees thead th { background: var(--grad-green-soft); }
+
+/* ---------- MESSAGES DE RETOUR ---------- */
+.message-succes, .message-erreur, .message-info {
+  border-radius: 10px;
+  box-shadow: var(--shadow-xs);
+  animation: cardIn .35s var(--ease) both;
+}
+
+/* ---------- PIED DE PAGE ---------- */
+footer, .footer {
+  background: var(--grad-green) !important;
+  box-shadow: 0 -2px 12px rgba(61, 87, 48, 0.15);
+}
+
+/* ---------- LIENS DE NAVIGATION (soulignement animé) ---------- */
+nav a, .navbar a { position: relative; }
+nav a::after, .navbar a::after {
+  content: "";
+  position: absolute;
+  left: 0; bottom: -4px;
+  width: 0; height: 2px;
+  background: #fff;
+  transition: width .25s var(--ease);
+}
+nav a:hover::after, .navbar a:hover::after { width: 100%; }
+
+/* ---------- ACCESSIBILITÉ : respect de « animations réduites » ---------- */
+@media (prefers-reduced-motion: reduce) {
+  *, .animal-card, .modale-contenu, .page-legale { animation: none !important; transition: none !important; }
+  html { scroll-behavior: auto; }
+}
