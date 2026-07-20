@@ -18,7 +18,7 @@ class DonManager {
 
             // 2. On insère le don
             $sql = "INSERT INTO don (id_utilisateur, nom, prenom, email, telephone, montant, date_don, statut) 
-                    VALUES (?, ?, ?, ?, ?, ?, NOW(), 'Validé')";
+                    VALUES (?, ?, ?, ?, ?, ?, NOW(), 'valide')";
             
             $stmt = $this->db->prepare($sql);
             return $stmt->execute([
