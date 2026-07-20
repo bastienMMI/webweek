@@ -1,7 +1,6 @@
 <?php
-$hote = "localhost";
-$nom_bdd = "spa43";
-$utilisateur = "root";
+$hote         = "localhost";
+$nom_bdd      = "spa43";
+$utilisateur  = "root";
 $mot_de_passe = "";
-$encodage = "utf8";
-?>
+$encodage     = "utf8mb4";
