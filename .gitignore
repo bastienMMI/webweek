@@ -1,5 +1,28 @@
+# ------------------------------------------------------------------
+# Configuration locale : contient les identifiants de la base.
+# Ne jamais versionner — utiliser config/configuration.exemple.php.
+# ------------------------------------------------------------------
+config/configuration.php
+
+# Dépendances éventuelles
+/vendor/
+/node_modules/
+
+# Fichiers d'éditeur et de système
+.vscode/
+.idea/
+*.code-workspace
 .DS_Store
-*.png
-*.jpg
-*.jpeg
-*.gif
+Thumbs.db
+desktop.ini
+
+# Journaux et fichiers temporaires
+*.log
+*.tmp
+*.bak
+*~
+
+# Archives et exports
+*.zip
+*.tar.gz
+*.sql.gz

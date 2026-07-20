@@ -1,3 +1,7 @@
+<?php
+$page_titre = "Connexion — SPA de la Haute-Loire";
+$page_description = "Connectez-vous à votre espace personnel pour suivre vos pré-réservations et vos dons au refuge.";
+?>
 <!doctype html>
 <html lang="fr">
 

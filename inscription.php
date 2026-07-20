@@ -44,6 +44,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
     }
 }
+
+$page_titre = "Créer un compte — SPA de la Haute-Loire";
+$page_description = "Créez votre compte pour pré-réserver un animal et soutenir le refuge de la SPA de la Haute-Loire.";
 ?>
 <!DOCTYPE html>
 <html lang="fr">

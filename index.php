@@ -1,3 +1,7 @@
+<?php
+$page_titre = "SPA de la Haute-Loire — Refuge et adoption au Puy-en-Velay";
+$page_description = "Le refuge de la SPA de la Haute-Loire accueille chiens et chats à l'adoption à Polignac. Adoptez, faites un don ou devenez bénévole.";
+?>
 <!DOCTYPE html>
 <html lang="fr">
     <?php 
@@ -9,7 +13,7 @@
 ?>
     <main>
         <section class="hero">
-            <video autoplay muted loop playsinline id="hero-video" poster="fallback-image.jpg">
+            <video autoplay muted loop playsinline id="hero-video" poster="images/carousel_index/Banniere1.webp">
                 <source src="vidéo/videobanieres.webm" type="video/webm">
             </video>
             <div class="hero-content">
@@ -28,9 +32,9 @@
 
             <div class="carousel-track">
                
-                <div class="carousel-item"><img src="images/carousel_index/Banniere1.webp" alt=""></div>
-                <div class="carousel-item"><img src="images/carousel_index/Banniere2.webp" alt=""></div>
-                <div class="carousel-item"><img src="images/carousel_index/Banniere3.webp" alt=""></div>
+                <div class="carousel-item"><img src="images/carousel_index/Banniere1.webp" alt="" loading="lazy"></div>
+                <div class="carousel-item"><img src="images/carousel_index/Banniere2.webp" alt="" loading="lazy"></div>
+                <div class="carousel-item"><img src="images/carousel_index/Banniere3.webp" alt="" loading="lazy"></div>
             </div>
             
             <div class="carousel-nav"></div>
@@ -70,43 +74,38 @@
         </div>
 
         <div class="contact-form">
-               <h3>Formulaire de Contact</h3>
-                <div id="confirmation-message" style="display:none; background: #d4edda; color: #155724; padding: 15px; border-radius: 5px; margin-bottom: 20px; font-weight: bold; text-align: center;">
-                    Votre demande a bien été envoyée !
-                </div>
-                <form id="monFormulaireContact">
+               <h3>Formulaire de contact</h3>
+
+                <div id="contact-retour" role="status" aria-live="polite"></div>
+
+                <form id="monFormulaireContact" action="api/contact.php" method="POST">
                     <div class="form-row">
                         <div class="input-group-index">
-                            <label>Nom</label>
-                            <input type="text">
+                            <label for="contact-nom">Nom</label>
+                            <input type="text" id="contact-nom" name="nom" required>
                         </div>
                         <div class="input-group-index">
-                            <label>E-mail</label>
-                            <input type="email">
+                            <label for="contact-email">E-mail</label>
+                            <input type="email" id="contact-email" name="email" required>
                         </div>
                     </div>
                     <div class="input-group-index">
-                        <label for="tel">Téléphone</label>
-                        <input type="tel" id="tel" />
+                        <label for="contact-tel">Téléphone</label>
+                        <input type="tel" id="contact-tel" name="telephone">
                     </div>
                     <div class="input-group-index">
-                        <label>Objet</label>
-                        <input type="text">
+                        <label for="contact-objet">Objet</label>
+                        <input type="text" id="contact-objet" name="objet">
                     </div>
                     <div class="input-group-index">
-                        <label>Message</label>
-                        <textarea rows="4"></textarea>
+                        <label for="contact-message">Message</label>
+                        <textarea id="contact-message" name="message" rows="4" required
+                                  aria-describedby="aide-message"></textarea>
+                        <small id="aide-message">10 caractères minimum.</small>
                     </div>
                     <button type="submit" class="btn-submit">Envoyer</button>
                 </form>
             </div>
-        <script>
-            document.getElementById('monFormulaireContact').addEventListener('submit', function(e) {
-                e.preventDefault();
-                this.style.display = 'none';
-                document.getElementById('confirmation-message').style.display = 'block'; 
-        });
-        </script>
         </div>
 </section>
         </section>
@@ -119,6 +118,7 @@
 <?php 
   include('header et footer/footer.php'); 
 ?>
+<script src="js/contact.js" defer></script>
 </body>
 
 </html>
