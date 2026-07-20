@@ -9,7 +9,9 @@
             </div>
 
             <div class="footer-right">
-                <a href="" class="legal-link">Mentions Légales</a>
+                <a href="mentions-legales.php" class="legal-link">Mentions légales</a>
+                <a href="confidentialite.php" class="legal-link">Confidentialité</a>
+                <a href="accessibilite.php" class="legal-link">Accessibilité</a>
             </div>
         </div>
     </footer>

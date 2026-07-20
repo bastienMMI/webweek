@@ -1,20 +1,20 @@
 <header>
     <input type="checkbox" id="menu-toggle" class="menu-checkbox">
 
-    <label for="menu-toggle" class="burger-menu">
-        <span></span><span></span><span></span>
+    <label for="menu-toggle" class="burger-menu" role="button" tabindex="0"
+           aria-controls="menu-principal" aria-expanded="false" aria-label="Ouvrir le menu de navigation">
+        <span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span>
     </label>
 
     <div class="logo">
         <a href="index.php"><img src="images/Logo-1.webp" alt="Logo SPA Haute-Loire"></a>
     </div>
 
-    <nav>
-        <ul>
+    <nav aria-label="Navigation principale">
+        <ul id="menu-principal">
             <li><a href="adopter.php">Adopter</a></li>
             <li><a href="aider.php">Nous aider</a></li>
             <li><a href="index.php#contact">Contact</a></li>
-            <li><a href="boutique.php">Boutique</a></li>
             
             <?php if (isset($_SESSION['user_id'])): ?>
                 <li class="mobile-only"><a href="mon-compte.php">Mon Compte</a></li>
